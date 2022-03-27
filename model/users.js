@@ -46,8 +46,13 @@ const UserSchema = new mongoose.Schema({
   },
   passwordResetToken: { type: String },
   passwordResetExpires: { type: Date },
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
+  },
 });
-
+//pre is built in mongoose Middleware!
 // hashing the password feild before saving in the db and removing the conform field
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
@@ -64,7 +69,12 @@ UserSchema.pre("save", function (next) {
   this.passwordChangedAt = Date.now() - 1000;
   next();
 });
-
+//Only geting the active users in the find query
+UserSchema.pre(/^find/, function (next) {
+  //this points to the current query, which starts with find
+  this.find({ active: true });
+  next();
+});
 //the function that compares the hashed in the db and intered one using bycrypt package
 UserSchema.methods.correctPassword = async function (
   candidatePassword,

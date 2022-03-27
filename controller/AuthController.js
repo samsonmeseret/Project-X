@@ -25,6 +25,17 @@ exports.signup = CatchAsync(async (req, res, next) => {
   });
 
   const token = signToken(savedUser._id);
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    //this will be true in the hosting and productions
+    secure: false,
+    httpOnly: true,
+  };
+  res.cookie("jwt", token, cookieOptions);
+  //removing the password from the output of saved user but its found in the database!
+  savedUser.password = undefined;
   res.status(200).json({
     massage: "success",
     token,
@@ -49,6 +60,15 @@ exports.login = CatchAsync(async (req, res, next) => {
   }
 
   const token = signToken(user._id);
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    //this will be true in the hosting and productions
+    secure: false,
+    httpOnly: true,
+  };
+  res.cookie("jwt", token, cookieOptions);
   res.status(200).json({
     status: "success!",
     token: token,
@@ -169,6 +189,45 @@ exports.resetPassword = CatchAsync(async (req, res, next) => {
   //3) update changePasswordAt property for the user----in the schema pre Middleware
   //4) log the user in, send JWT
   const token = signToken(user._id);
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    //this will be true in the hosting and productions
+    secure: false,
+    httpOnly: true,
+  };
+  res.cookie("jwt", token, cookieOptions);
+  res.status(200).json({
+    status: "success!",
+    token: token,
+  });
+});
+
+exports.updatePassword = CatchAsync(async (req, res, next) => {
+  //1) Get user from collesction
+  const user = await User.findById(req.user.id).select("+password");
+
+  //2) Check if POSTed current password is correct
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+    return next(new AppError("Your current password is wrong.", 401)); //unathorized
+  }
+  //3) if so, update password
+  user.password = req.body.password;
+  user.passwordConform = req.body.passwordConform;
+  await user.save();
+
+  //4) Log user in, send JWT
+  const token = signToken(user._id);
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    //this will be true in the hosting and productions
+    secure: false,
+    httpOnly: true,
+  };
+  res.cookie("jwt", token, cookieOptions);
   res.status(200).json({
     status: "success!",
     token: token,
