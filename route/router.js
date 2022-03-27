@@ -26,9 +26,9 @@ Router.route("/user/deleteMe").delete(
 );
 
 //NOT Immplemented yet!
-// Router.route("/")
-//   .get(AuthController.protect, userController.findAlluser)
-//   .post(userController.createUser);
+Router.route("/")
+  .get(AuthController.protect, userController.findAlluser)
+  .post(userController.createUser);
 // Router.route("/:id")
 //   .get(
 //     AuthController.protect,
