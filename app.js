@@ -3,7 +3,8 @@ const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const Router = require("./route/userRouter");
+const authRouter = require("./route/AuthRouter");
+const expenseRouter = require("./route/expenseRouter");
 const globalErrorHanddler = require("./middlewares/errorHanddler");
 const notFound = require("./route/notFound");
 const AppError = require("./utils/AppError");
@@ -39,7 +40,8 @@ app.use(xss());
 //   })
 // );
 
-app.use(Router);
+app.use(authRouter);
+app.use(expenseRouter);
 
 app.use(notFound);
 

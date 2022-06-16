@@ -17,9 +17,12 @@ exports.createUser = CatchAsync(async (req, res, next) => {
   const newUser = new User({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
+    sex: req.body.sex,
+    phone: req.body.phone,
     email: req.body.email,
     password: req.body.password,
     passwordConform: req.body.passwordConform,
+    role: req.body.role,
     //img: file.path
   });
 
@@ -46,15 +49,47 @@ exports.findUser = CatchAsync(async (req, res, next) => {
   }
 });
 exports.findAlluser = CatchAsync(async (req, res, next) => {
-  const allUser = await User.find();
+  const { sex, firstname, sort, phone } = req.query;
+
+  let queryObject = {};
+
+  if (sex) {
+    queryObject.sex = sex === "male" ? "male" : "female";
+  }
+  if (firstname) {
+    queryObject.firstname = { $regex: firstname, $options: "i" };
+  }
+  if (phone) {
+    queryObject.phone = { $regex: phone };
+  }
+  let result = User.find(queryObject);
+
+  if (sort) {
+    const sortlist = sort.split(",").join(" ");
+
+    result = result.sort(sortlist);
+  } else {
+    result = result.sort("createdAt");
+  }
+
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  result = result.skip(skip).limit(limit);
+
+  console.log(queryObject);
+
+  const allUser = await result;
   if (!allUser) {
     res.status(StatusCodes.OK).json({
       status: "success",
-      data: `there is no User in the system`,
+      data: `there is no User in the system with your Query`,
     });
   } else {
     res.status(StatusCodes.OK).json({
       status: "success",
+      total: allUser.length,
       data: allUser,
     });
   }
@@ -80,7 +115,31 @@ exports.updateMe = CatchAsync(async (req, res, next) => {
   });
 
   res.status(200).json({
-    status: "success!",
+    status: "success",
+    data: updatedUser,
+  });
+});
+
+exports.updateUsers = CatchAsync(async (req, res, next) => {
+  const id = req.params.id;
+
+  const filteredBody = filterObj(
+    req.body,
+    "firstname",
+    "lastname",
+    "email",
+    "phone",
+    "password",
+    "role"
+  );
+
+  const updatedUser = await User.findByIdAndUpdate({ _id: id }, filteredBody, {
+    runValidators: false,
+    new: true,
+  });
+
+  res.status(StatusCodes.OK).json({
+    status: "success",
     data: updatedUser,
   });
 });

@@ -22,6 +22,16 @@ const UserSchema = new mongoose.Schema({
     validate: [validator.isEmail, "Please provide a valid email Address"],
     lowercase: true,
   },
+  phone: {
+    type: String,
+  },
+  sex: {
+    type: String,
+    enum: {
+      values: ["male", "female"],
+      message: "{VALUE} is not Supported",
+    },
+  },
   password: {
     type: String,
     required: true,
@@ -41,8 +51,7 @@ const UserSchema = new mongoose.Schema({
   passwordChangedAt: { type: Date },
   role: {
     type: String,
-    enum: ["user", "staff", "admin"],
-    default: "user",
+    enum: ["reception", "doctor", "admin"],
   },
   passwordResetToken: { type: String },
   passwordResetExpires: { type: Date },
