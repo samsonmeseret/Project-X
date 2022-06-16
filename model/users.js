@@ -56,8 +56,8 @@ const UserSchema = new mongoose.Schema({
 // hashing the password feild before saving in the db and removing the conform field
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-
-  this.password = await bcrypt.hash(this.password, 10);
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
   this.passwordConform = undefined;
   next();
 });

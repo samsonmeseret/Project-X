@@ -3,7 +3,7 @@ const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const Router = require("./route/router");
+const Router = require("./route/userRouter");
 const globalErrorHanddler = require("./middlewares/errorHanddler");
 const notFound = require("./route/notFound");
 const AppError = require("./utils/AppError");
@@ -46,10 +46,9 @@ app.use(notFound);
 app.use(globalErrorHanddler);
 
 const start = CatchAsync(async (uri, port) => {
-  await mongoose
-    .connect(uri)
-    .then(console.log("Database connected Succesfully!"));
+  await mongoose.connect(uri);
+  console.log("Database connected Succesfully!");
   app.listen(port, console.log(`server running on port: ${port}`));
 });
 
-start(process.env.MONGO, process.env.PORT);
+start(process.env.MONGO_URI, process.env.PORT);

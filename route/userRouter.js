@@ -1,13 +1,15 @@
 const express = require("express");
 const Router = express.Router();
 const userController = require("../controller/userController");
-const courseController = require("../controller/courseController");
 const AuthController = require("../controller/AuthController");
 const imageHanddler = require("../middlewares/imageHanddler");
 //Auth
+Router.route("/").get((req, res, next) => {
+  res.send("<h1>form native</h1>");
+});
 Router.route("/signup").post(AuthController.signup);
 Router.route("/login").post(AuthController.login);
-Router.route("/user/forgotPassword").post(AuthController.forgotPassword);
+// Router.route("/user/forgotPassword").post(AuthController.forgotPassword);
 Router.route("/user/resetPassword/:token").patch(AuthController.resetPassword);
 Router.route("/user/updateMyPassword").patch(
   AuthController.protect,

@@ -1,13 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
-const patientSchema = new mongoose.Schema({
-  cardNumber: {
-    type: Number,
-    required: [true, "please provide a Card ID"],
-    unique: [true, "the Card ID is allready in the System"],
-    minlength: 1,
-  },
+const bookingSchema = new mongoose.Schema({
   firstname: {
     type: String,
     required: [true, "please provide First Name"],
@@ -22,12 +16,6 @@ const patientSchema = new mongoose.Schema({
     type: String,
     required: [true, "please provide Last Name"],
     minlength: 1,
-  },
-  sex: {
-    enum: {
-      values: ["male", "female"],
-      message: "{VALUE} is not supported",
-    },
   },
   age: {
     type: Number,
@@ -47,30 +35,6 @@ const patientSchema = new mongoose.Schema({
     type: String,
     required: [true, "please provide Address"],
   },
-  diagnosisOnlyDR: {
-    type: String,
-  },
-  cardFee: {
-    type: Number,
-  },
-  procedureFee: {
-    type: Number,
-  },
-  appointmentDate: {
-    type: Date,
-  },
-  eyeglassPayment: {
-    type: Number,
-  },
-  serviceProvided: {
-    type: String,
-  },
-  serviceFee: {
-    type: Number,
-  },
-  physician: {
-    type: String,
-  },
 });
 
-module.exports = mongoose.model("Patients", patientSchema);
+module.exports = mongoose.model("Booking", bookingSchema);
