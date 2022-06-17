@@ -38,6 +38,50 @@ exports.createPatients = CatchAsync(async (req, res, next) => {
   });
 });
 
+exports.createPatientsByAdmin = CatchAsync(async (req, res, next) => {
+  const newPatients = new Patients(req.body);
+  const patient = await newPatients.save();
+
+  res.status(StatusCodes.CREATED).json({
+    status: "success",
+    data: patient,
+  });
+});
+
+exports.getPatientByAdmin = CatchAsync(async (req, res, next) => {
+  const id = req.params.id;
+
+  const patient = await Patients.findById({ _id: id });
+  if (!patient)
+    return next(
+      new AppError(`No Patient with ID : ${id} or Removed`),
+      StatusCodes.NOT_FOUND
+    );
+
+  res.status(StatusCodes.OK).json({
+    status: "success",
+    data: patient,
+  });
+});
+
+exports.updateByAdmin = CatchAsync(async (req, res, next) => {
+  const id = req.params.id;
+
+  const patient = await Patients.findByIdAndUpdate({ _id: id }, req.body, {
+    runValidators: false,
+    new: true,
+  });
+
+  if (!patient)
+    return next(
+      new AppError(`No patient with ID ${id} or Removed`, StatusCodes.NOT_FOUND)
+    );
+
+  res.status(StatusCodes.OK).json({
+    status: "success",
+    data: patient,
+  });
+});
 // firstname: req.body.firstname,
 // middlename: req.body.middlename,
 // lastname: req.body.lastname,
@@ -74,6 +118,7 @@ exports.createDiagnosis = CatchAsync(async (req, res, next) => {
     data: savedDiag,
   });
 });
+
 exports.getPatientDiag = CatchAsync(async (req, res, next) => {
   const id = req.params.id;
   const patient = await Patients.findById({ _id: id }).select(
@@ -252,7 +297,7 @@ exports.updatePatientsByReception = CatchAsync(async (req, res, next) => {
   }
 });
 
-exports.deletePatients = CatchAsync(async (req, res, next) => {
+exports.deletePatient = CatchAsync(async (req, res, next) => {
   const id = req.params.id;
   const deletedPatients = await Patients.findByIdAndDelete(
     { _id: id },

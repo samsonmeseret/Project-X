@@ -27,7 +27,7 @@ Router.route("/patients/:id")
   )
   .delete(
     AuthController.restrictTo("reception"),
-    patientController.deletePatients
+    patientController.deletePatient
   );
 
 // By Medical Doctor/ Specialist / SubSpecialist
@@ -43,5 +43,19 @@ Router.route("/patients/diag/:id")
   );
 
 //By Admin
-Router.route("/admin/");
+Router.route("/admin/patients")
+  .get(
+    AuthController.restrictTo("admin"),
+    patientController.getAllPatientsbyAdmin
+  )
+  .post(
+    AuthController.restrictTo("admin"),
+    patientController.createPatientsByAdmin
+  );
+
+Router.route("/admin/patients/:id")
+  .get(AuthController.restrictTo("admin"), patientController.getPatientByAdmin)
+  .patch(AuthController.restrictTo("admin"), patientController.updateByAdmin)
+  .delete(AuthController.restrictTo("admin"), patientController.deletePatient);
+
 module.exports = patientRouter;
