@@ -9,14 +9,12 @@ Router.route("/signup").post(AuthController.signup);
 Router.route("/login").post(AuthController.login);
 // Router.route("/user/forgotPassword").post(AuthController.forgotPassword);
 Router.route("/user/resetPassword/:token").patch(AuthController.resetPassword);
-Router.route("/user/updateMyPassword").patch(
-  AuthController.protect,
-  AuthController.updatePassword
-);
 
 //User Activity
 //1) updating his profiles!
 Router.use(AuthController.protect);
+Router.route("/user/updateMyPassword").patch(AuthController.updatePassword);
+Router.route("/me").get(userController.getMe);
 Router.route("/user/updateMe").patch(userController.updateMe);
 //2) Deleting himself
 Router.route("/user/deleteMe").delete(userController.deleteMe);

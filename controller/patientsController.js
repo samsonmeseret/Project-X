@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Patients = require("../model/patients");
 const CatchAsync = require("../utils/CatchAsync");
 const { StatusCodes } = require("http-status-codes");
+const AppError = require("../utils/AppError");
 
 const filterObj = (obj, ...allowedFilds) => {
   const newObj = {};
@@ -73,6 +74,25 @@ exports.createDiagnosis = CatchAsync(async (req, res, next) => {
     data: savedDiag,
   });
 });
+exports.getPatientDiag = CatchAsync(async (req, res, next) => {
+  const id = req.params.id;
+  const patient = await Patients.findById({ _id: id }).select(
+    "-appointmentDate -cardFee -procedureFee -eyeglassType -eyeglassFee -totalPaid"
+  );
+
+  if (!patient)
+    return next(
+      new AppError(
+        `No Patient with ID: ${id} or Removed `,
+        StatusCodes.NOT_FOUND
+      )
+    );
+
+  res.status(StatusCodes.OK).json({
+    status: "success",
+    data: patient,
+  });
+});
 
 exports.findAllPatientDiag = CatchAsync(async (req, res, next) => {
   const { cardNumber } = req.query;
@@ -86,16 +106,19 @@ exports.findAllPatientDiag = CatchAsync(async (req, res, next) => {
   const foundAllPatientsDiag = await result.select(
     "-appointmentDate -cardFee -procedureFee -eyeglassType -eyeglassFee -totalPaid"
   );
-
+  if (!foundAllPatientsDiag)
+    return next(new AppError("No Patients Present", StatusCodes.NOT_FOUND));
   res.status(StatusCodes.OK).json({
     status: "success",
     data: foundAllPatientsDiag,
   });
 });
 
-exports.getPatient = CatchAsync(async (req, res, next) => {
+exports.getPatientByReception = CatchAsync(async (req, res, next) => {
   const id = req.params.id;
-  const foundPatients = await Patients.findById({ _id: id });
+  const foundPatients = await Patients.findById({ _id: id }).select(
+    "-physicianName -diagnosis"
+  );
   if (!foundPatients) {
     res.status(StatusCodes.NOT_FOUND).json({
       status: "success",
@@ -112,10 +135,6 @@ exports.getPatient = CatchAsync(async (req, res, next) => {
 exports.getAllPatientsbyAdmin = async (req, res) => {
   const { cardNumber, sex, sort, field } = req.query;
   let queryObject = {};
-  //fiter by featured
-  // if (featured) {
-  //     queryObject.featured = featured === 'true'? true: false
-  // }
   //filter by a sex
   if (sex) {
     queryObject.sex = sex;
@@ -157,10 +176,6 @@ exports.getAllPatientsbyAdmin = async (req, res) => {
 exports.getAllPatientsbyReception = async (req, res) => {
   const { cardNumber, sex, sort, field } = req.query;
   let queryObject = {};
-  //fiter by featured
-  // if (featured) {
-  //     queryObject.featured = featured === 'true'? true: false
-  // }
   //filter by a sex
   if (sex) {
     queryObject.sex = sex;
@@ -199,11 +214,27 @@ exports.getAllPatientsbyReception = async (req, res) => {
     .json({ status: "success", data, nbHits: data.length });
 };
 
-exports.updatePatients = CatchAsync(async (req, res, next) => {
+exports.updatePatientsByReception = CatchAsync(async (req, res, next) => {
   const id = req.params.id;
+  const filteredBody = filterObj(
+    req.body,
+    "card No",
+    "firstname",
+    "middlename",
+    "lastname",
+    "age",
+    "email",
+    "sex",
+    "phone",
+    "cardFee",
+    "procedureFee",
+    "appointmentDate",
+    "eyeglassPayment",
+    "eyeglassType"
+  );
   const updatedPatients = await Patients.findByIdAndUpdate(
     { _id: id },
-    req.body,
+    filteredBody,
     {
       new: true,
     }

@@ -7,12 +7,17 @@ Router.use(AuthController.protect);
 Router.use(AuthController.restrictTo("reception", "admin"));
 Router.route("/expense")
   .get(expenseController.findAllExpense)
-  .post(expenseController.createExpense);
+  .post(expenseController.requestExpense);
 Router.route("/expense/:id")
-  .patch(expenseController.updateExpense)
-  .delete(expenseController.deleteExpense);
+  .patch(expenseController.updateUnApprovedExpense)
+  .delete(expenseController.deleteExpense)
+  .get(expenseController.getExpense);
 
 Router.use(AuthController.restrictTo("admin"));
-Router.route("/expense/:id/approve").patch(expenseController.approveRequest);
+Router.route("/admin/expense/:id")
+  .patch(expenseController.approveRequest)
+  .delete(expenseController.deleteExpenseByAdmin);
+
+Router.route("/Expense/stat/:year").get(expenseController.getMonthlyStat);
 
 module.exports = Router;

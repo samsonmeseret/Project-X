@@ -40,8 +40,8 @@ app.use(xss());
 //   })
 // );
 
-app.use(authRouter);
 app.use(expenseRouter);
+app.use(authRouter);
 
 app.use(notFound);
 

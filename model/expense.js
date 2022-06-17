@@ -20,9 +20,10 @@ const expenseSchema = new mongoose.Schema(
     },
     totalPrice: {
       type: Number,
-      default: function () {
-        return this.unitPrice * this.quantity;
-      },
+      // no SAVE / CREATE
+      // default: function () {
+      //   return this.unitPrice * this.quantity;
+      // },
     },
     approval: {
       type: Boolean,
@@ -31,5 +32,11 @@ const expenseSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+expenseSchema.pre("save", function (next) {
+  if (!this.isModified("quantity unitPrice")) return next();
+  this.totalPrice = this.quantity * this.unitPrice;
+  next();
+});
 
 module.exports = mongoose.model("Expense", expenseSchema);
