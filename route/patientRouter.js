@@ -31,7 +31,7 @@ Router.route("/patients/:id")
   );
 
 // By Medical Doctor/ Specialist / SubSpecialist
-Router.route("/patients/diag").get(
+Router.route("/diag/patients").get(
   AuthController.restrictTo("doctor"),
   patientController.findAllPatientDiag
 );
@@ -58,4 +58,4 @@ Router.route("/admin/patients/:id")
   .patch(AuthController.restrictTo("admin"), patientController.updateByAdmin)
   .delete(AuthController.restrictTo("admin"), patientController.deletePatient);
 
-module.exports = patientRouter;
+module.exports = Router;

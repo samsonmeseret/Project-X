@@ -25,6 +25,7 @@ const patientSchema = new mongoose.Schema(
       minlength: 1,
     },
     sex: {
+      type: String,
       enum: {
         values: ["male", "female"],
         message: "{VALUE} is not supported",
@@ -41,7 +42,7 @@ const patientSchema = new mongoose.Schema(
       minlength: 1,
     },
     phone: {
-      type: Number,
+      type: String,
       required: [true, "please provide a Phone Number"],
     },
     Address: {
@@ -77,13 +78,15 @@ const patientSchema = new mongoose.Schema(
     },
     totalPaid: {
       type: Number,
-      default: function (total) {
-        total = this.cardFee + this.procedureFee + this.eyeglassPayment;
-        return total;
-      },
     },
   },
   { timestamps: true }
 );
+
+patientSchema.pre("save", function (next) {
+  if (!this.isModified("eyeglassPayment procedureFee cardFee")) return next();
+  this.totalPaid = this.eyeglassPayment + this.procedureFee + this.cardFee;
+  next();
+});
 
 module.exports = mongoose.model("Patients", patientSchema);

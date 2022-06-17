@@ -20,13 +20,13 @@ Router.route("/user/updateMe").patch(userController.updateMe);
 Router.route("/user/deleteMe").delete(userController.deleteMe);
 
 //Immplemented by Admin (SUper User)
-Router.use(AuthController.restrictTo("admin"));
+
 Router.route("/users")
-  .get(userController.findAlluser)
-  .post(userController.createUser);
+  .get(AuthController.restrictTo("admin"), userController.findAlluser)
+  .post(AuthController.restrictTo("admin"), userController.createUser);
 
 Router.route("/users/:id")
-  .get(userController.findUser)
-  .patch(userController.updateUsers)
-  .delete(userController.deleteUser);
+  .get(AuthController.restrictTo("admin"), userController.findUser)
+  .patch(AuthController.restrictTo("admin"), userController.updateUsers)
+  .delete(AuthController.restrictTo("admin"), userController.deleteUser);
 module.exports = Router;

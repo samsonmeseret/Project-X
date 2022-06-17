@@ -15,7 +15,7 @@ const filterObj = (obj, ...allowedFilds) => {
 exports.createPatients = CatchAsync(async (req, res, next) => {
   const filteredBody = filterObj(
     req.body,
-    "card No",
+    "cardNumber",
     "firstname",
     "middlename",
     "lastname",
@@ -23,6 +23,7 @@ exports.createPatients = CatchAsync(async (req, res, next) => {
     "email",
     "sex",
     "phone",
+    "Address",
     "cardFee",
     "procedureFee",
     "appointmentDate",
@@ -66,63 +67,79 @@ exports.getPatientByAdmin = CatchAsync(async (req, res, next) => {
 
 exports.updateByAdmin = CatchAsync(async (req, res, next) => {
   const id = req.params.id;
+  const {
+    cardNumber,
+    firstname,
+    middlename,
+    lastname,
+    age,
+    email,
+    sex,
+    phone,
+    Address,
+    cardFee,
+    procedureFee,
+    appointmentDate,
+    eyeglassPayment,
+    eyeglassType,
+    diagnosis,
+    physicianName,
+    drAppointmentDate,
+  } = req.body;
 
-  const patient = await Patients.findByIdAndUpdate({ _id: id }, req.body, {
-    runValidators: false,
-    new: true,
-  });
+  const patient = await Patients.findById({ _id: id });
 
   if (!patient)
     return next(
       new AppError(`No patient with ID ${id} or Removed`, StatusCodes.NOT_FOUND)
     );
+  if (cardNumber) patient.cardNumber = cardNumber;
+  if (firstname) patient.firstname = firstname;
+  if (lastname) patient.lastname = lastname;
+  if (email) patient.email = email;
+  if (sex) patient.sex = sex;
+  if (phone) patient.phone = phone;
+  if (Address) patient.Address = Address;
+  if (cardFee) patient.cardFee = cardFee;
+  if (procedureFee) patient.procedureFee = procedureFee;
+  if (age) patient.age = age;
+  if (middlename) patient.middlename = middlename;
+  if (appointmentDate) patient.appointmentDate = appointmentDate;
+  if (eyeglassPayment) patient.eyeglassPayment = eyeglassPayment;
+  if (eyeglassType) patient.eyeglassType = eyeglassType;
+  if (diagnosis) patient.diagnosis = diagnosis;
+  if (physicianName) patient.physicianName = physicianName;
+  if (drAppointmentDate) patient.drAppointmentDate = drAppointmentDate;
+  await patient.save({ runValidators: false });
 
   res.status(StatusCodes.OK).json({
     status: "success",
     data: patient,
   });
 });
-// firstname: req.body.firstname,
-// middlename: req.body.middlename,
-// lastname: req.body.lastname,
-// age: req.body.age,
-// email: req.body.email,
-// sex: req.body.sex,
-// phone: req.body.phone,
-// // disgnosisOnlyDR: req.body.disgnosisOnlyDR,
-// cardFee: req.body.cardFee,
-// procedureFee: req.body.procedureFee,
-// appointmentDate: req.body.appointmentDate,
-// eyeglassPayment: req.body.eyeglassPayment,
-// serviceProvided: req.body.serviceProvided,
-// serviceFee: req.body.serviceFee,
-// physician: req.body.physician,
 
 exports.createDiagnosis = CatchAsync(async (req, res, next) => {
   const id = req.params.id;
-  const filteredBody = filterObj(
-    req.body,
-    "diagnosis",
-    "physicianName",
-    "drAppointmentDate"
-  );
+  const { diagnosis, procedureType, physicianName, drAppointmentDate } =
+    req.body;
 
-  const savedDiag = await Patients.findByIdAndUpdate(
-    { _id: id },
-    filteredBody,
-    { runValidators: false, new: true }
-  );
+  const patient = await Patients.findById({ _id: id });
+  if (diagnosis) patient.diagnosis = diagnosis;
+  if (drAppointmentDate) patient.drAppointmentDate = drAppointmentDate;
+  if (physicianName) patient.physicianName = physicianName;
+  if (procedureType) patient.procedureType = procedureType;
 
+  await patient.save({ runValidators: false });
   res.status(StatusCodes.CREATED).json({
     status: "success",
-    data: savedDiag,
+    data: patient,
   });
 });
 
 exports.getPatientDiag = CatchAsync(async (req, res, next) => {
   const id = req.params.id;
   const patient = await Patients.findById({ _id: id }).select(
-    "-appointmentDate -cardFee -procedureFee -eyeglassType -eyeglassFee -totalPaid"
+    "-appointmentDate -cardFee -procedureFee -eyeglassType -eyeglassPayment -totalPaid"
   );
 
   if (!patient)
@@ -141,18 +158,23 @@ exports.getPatientDiag = CatchAsync(async (req, res, next) => {
 
 exports.findAllPatientDiag = CatchAsync(async (req, res, next) => {
   const { cardNumber } = req.query;
+
   let queryObject = {};
 
   //search by a cardNumber
   if (cardNumber) {
-    queryObject.cardNumber = { $regex: cardNumber, $options: "i" };
+    queryObject.cardNumber = cardNumber;
   }
+
   let result = Patients.find(queryObject);
+
   const foundAllPatientsDiag = await result.select(
-    "-appointmentDate -cardFee -procedureFee -eyeglassType -eyeglassFee -totalPaid"
+    "-appointmentDate -cardFee -procedureFee -eyeglassType -eyeglassPayment -totalPaid"
   );
+
   if (!foundAllPatientsDiag)
     return next(new AppError("No Patients Present", StatusCodes.NOT_FOUND));
+
   res.status(StatusCodes.OK).json({
     status: "success",
     data: foundAllPatientsDiag,
@@ -186,7 +208,7 @@ exports.getAllPatientsbyAdmin = async (req, res) => {
   }
   //search by a cardNumber
   if (cardNumber) {
-    queryObject.cardNumber = { $regex: cardNumber, $options: "i" };
+    queryObject.cardNumber = cardNumber;
   }
   let result = Patients.find(queryObject);
   //sort by alfabetical string(firstname ...) and nubers(age ...)
@@ -227,7 +249,7 @@ exports.getAllPatientsbyReception = async (req, res) => {
   }
   //search by a cardNumber
   if (cardNumber) {
-    queryObject.cardNumber = { $regex: cardNumber, $options: "i" };
+    queryObject.cardNumber = cardNumber;
   }
   let result = Patients.find(queryObject);
   //sort by alfabetical string(firstname ...) and nubers(age ...)

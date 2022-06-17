@@ -20,10 +20,6 @@ const expenseSchema = new mongoose.Schema(
     },
     totalPrice: {
       type: Number,
-      // no SAVE / CREATE
-      // default: function () {
-      //   return this.unitPrice * this.quantity;
-      // },
     },
     approval: {
       type: Boolean,
