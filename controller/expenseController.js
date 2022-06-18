@@ -17,61 +17,73 @@ exports.requestExpense = CatchAsync(async (req, res, next) => {
     data: savedExpense,
   });
 });
-exports.getMonthlyStat = CatchAsync(async (req, res, next) => {
-  const year = req.params.year;
-  const stats = await Expense.aggregate([
-    {
-      $match: {
-        createdAt: {
-          $gte: new Date(`${year}-01-01`),
-          $lte: new Date(`${year}-12-31`),
-        },
-        totalPrice: { $gte: 0 },
-      },
-    },
-    {
-      $group: {
-        _id: { $month: "$createdAt" },
-        numExpenses: { $sum: 1 },
-        totalPrice: { $sum: "$totalPrice" },
-        expenseName: { $push: "$expenseName" },
-      },
-    },
-    {
-      $addFields: {
-        Month: {
-          $arrayElemAt: [
-            [
-              "",
-              "Jan",
-              "Feb",
-              "Mar",
-              "Apr",
-              "May",
-              "Jun",
-              "Jul",
-              "Aug",
-              "Sep",
-              "Oct",
-              "Nov",
-              "Dec",
-            ],
-            "$_id",
-          ],
-        },
-      },
-    },
-    {
-      $project: {
-        _id: 0,
-      },
-    },
-  ]).limit(12);
 
-  res.status(StatusCodes.OK).json({
-    status: "success",
-    data: stats,
-  });
+exports.getMonthlyExpenseStat = CatchAsync(async (req, res, next) => {
+  const year = req.params.year;
+  const currentUser = req.user;
+
+  if (currentUser.role === "admin") {
+    const stats = await Expense.aggregate([
+      {
+        $match: {
+          createdAt: {
+            $gte: new Date(`${year}-01-01`),
+            $lte: new Date(`${year}-12-31`),
+          },
+          totalPrice: { $gte: 0 },
+        },
+      },
+      {
+        $group: {
+          _id: { $month: "$createdAt" },
+          numExpenses: { $sum: 1 },
+          totalPrice: { $sum: "$totalPrice" },
+          expenseName: { $push: "$expenseName" },
+        },
+      },
+      {
+        $addFields: {
+          Month: {
+            $arrayElemAt: [
+              [
+                "",
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+              ],
+              "$_id",
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+        },
+      },
+    ]).limit(12);
+
+    res.status(StatusCodes.OK).json({
+      status: "success",
+      data: stats,
+    });
+  } else {
+    return next(
+      new AppError(
+        "You have No permission to access the Expenses Statistic",
+        StatusCodes.BAD_REQUEST
+      )
+    );
+  }
 });
 exports.findAllExpense = CatchAsync(async (req, res, next) => {
   const { expenseName, approval, sort } = req.query;

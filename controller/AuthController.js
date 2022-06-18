@@ -130,41 +130,41 @@ exports.restrictTo = (...roles) => {
   };
 };
 
-// exports.forgotPassword = CatchAsync(async (req, res, next) => {
-//   //1) Get user based on the POSTED email
-//   const user = await User.findOne({ email: req.body.email });
+exports.forgotPassword = CatchAsync(async (req, res, next) => {
+  //1) Get user based on the POSTED email
+  const user = await User.findOne({ email: req.body.email });
 
-//   if (!user) {
-//     return next(new AppError("There is no user with that email address.", 404));
-//   }
+  if (!user) {
+    return next(new AppError("There is no user with that email address.", 404));
+  }
 
-//   //2) Generate the random reset Token
-//   const resetToken = user.createPasswordResetToken();
-//   await user.save({ validateBeforeSave: false });
+  //2) Generate the random reset Token
+  const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
 
-//   //3) Send it to user's email
-//   const resetURL = `${req.protocol}://${req.get(
-//     "host"
-//   )}/user/resetPassword/${resetToken}`;
+  //3) Send it to user's email
+  const resetURL = `${req.protocol}://${req.get(
+    "host"
+  )}/user/resetPassword/${resetToken}`;
 
-//   const message = `Forgot your password? Summit a PATCH request with your new password and passwordConfirm to: ${resetURL}. \nIf you didn't forget your password, please Ignore this email`;
-//   try {
-//     await sendEmail({
-//       email: user.email,
-//       subject: "Your password reset token (valid for 10 min)",
-//       message,
-//     });
+  const message = `Forgot your password? Summit a PATCH request with your new password and passwordConfirm to: ${resetURL}. \nIf you didn't forget your password, please Ignore this email`;
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: "Your password reset token (valid for 10 min)",
+      message,
+    });
 
-//     res.status(200).json({
-//       status: "success",
-//       message: "Token sent to email!",
-//     });
-//   } catch (err) {
-//     user.passwordResetToken = undefined;
-//     user.passwordResetExpires = undefined;
-//     await user.save({ validateBeforeSave: false });
-//   }
-// });
+    res.status(200).json({
+      status: "success",
+      message: "Token sent to email!",
+    });
+  } catch (err) {
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save({ validateBeforeSave: false });
+  }
+});
 
 exports.resetPassword = CatchAsync(async (req, res, next) => {
   //1) Get user based on the token

@@ -18,6 +18,8 @@ Router.route("/admin/expense/:id")
   .patch(expenseController.approveRequest)
   .delete(expenseController.deleteExpenseByAdmin);
 
-Router.route("/Expense/stat/:year").get(expenseController.getMonthlyStat);
+Router.route("/Expense/stat/:year").get(
+  expenseController.getMonthlyExpenseStat
+);
 
 module.exports = Router;

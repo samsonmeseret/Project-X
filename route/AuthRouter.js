@@ -7,7 +7,7 @@ const imageHanddler = require("../middlewares/imageHanddler");
 
 Router.route("/signup").post(AuthController.signup);
 Router.route("/login").post(AuthController.login);
-// Router.route("/user/forgotPassword").post(AuthController.forgotPassword);
+Router.route("/user/forgotPassword").post(AuthController.forgotPassword);
 Router.route("/user/resetPassword/:token").patch(AuthController.resetPassword);
 
 //User Activity

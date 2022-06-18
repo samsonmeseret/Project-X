@@ -4,6 +4,7 @@ const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const patientRouter = require("./route/patientRouter");
+const bookingRouter = require("./route/bookingRouter");
 const authRouter = require("./route/AuthRouter");
 const expenseRouter = require("./route/expenseRouter");
 const globalErrorHanddler = require("./middlewares/errorHanddler");
@@ -34,13 +35,24 @@ app.use(mongoSanitize());
 app.use(xss());
 
 //Prevent Parameter Polution
-//NOT Implemented yet!!!
-// app.use(
-//   hpp({
-//     whitelist: ["price"],
-//   })
-// );
 
+app.use(
+  hpp({
+    whitelist: [
+      "expenseName",
+      "approval",
+      "sort",
+      "bookingId",
+      "firstname",
+      "middlename",
+      "lastname",
+      "cardNumber",
+      "sex",
+      "field",
+    ],
+  })
+);
+app.use(bookingRouter);
 app.use(patientRouter);
 app.use(authRouter);
 app.use(expenseRouter);

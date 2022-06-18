@@ -6,56 +6,16 @@ const patientController = require("../controller/patientsController");
 // Protecting every resources of patient
 Router.use(AuthController.protect);
 
-// By Reception/Receptionist
+// By Reception/Admin/Doctor depends on the permission of the user Query result varies
 Router.route("/patients")
-  .post(
-    AuthController.restrictTo("reception"),
-    patientController.createPatients
-  )
-  .get(
-    AuthController.restrictTo("reception"),
-    patientController.getAllPatientsbyReception
-  );
+  .post(patientController.registerPatients)
+  .get(patientController.getAllPatients);
 Router.route("/patients/:id")
-  .patch(
-    AuthController.restrictTo("reception"),
-    patientController.updatePatientsByReception
-  )
-  .get(
-    AuthController.restrictTo("reception"),
-    patientController.getPatientByReception
-  )
-  .delete(
-    AuthController.restrictTo("reception"),
-    patientController.deletePatient
-  );
+  .patch(patientController.updatePatient)
+  .get(patientController.getSinglePatient)
+  .delete(patientController.deletePatient);
 
-// By Medical Doctor/ Specialist / SubSpecialist
-Router.route("/diag/patients").get(
-  AuthController.restrictTo("doctor"),
-  patientController.findAllPatientDiag
+Router.route("/patients/stat/:year").get(
+  patientController.getMonthlyPatientsStat
 );
-Router.route("/patients/diag/:id")
-  .get(AuthController.restrictTo("doctor"), patientController.getPatientDiag)
-  .patch(
-    AuthController.restrictTo("doctor"),
-    patientController.createDiagnosis
-  );
-
-//By Admin
-Router.route("/admin/patients")
-  .get(
-    AuthController.restrictTo("admin"),
-    patientController.getAllPatientsbyAdmin
-  )
-  .post(
-    AuthController.restrictTo("admin"),
-    patientController.createPatientsByAdmin
-  );
-
-Router.route("/admin/patients/:id")
-  .get(AuthController.restrictTo("admin"), patientController.getPatientByAdmin)
-  .patch(AuthController.restrictTo("admin"), patientController.updateByAdmin)
-  .delete(AuthController.restrictTo("admin"), patientController.deletePatient);
-
 module.exports = Router;
