@@ -14,7 +14,7 @@ const CatchAsync = require("./utils/CatchAsync");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
-
+const port = 4000 || process.env.PORT
 const app = express();
 
 //Secure the Header
@@ -67,4 +67,4 @@ const start = CatchAsync(async (uri, port) => {
   app.listen(port, console.log(`server running on port: ${port}`));
 });
 
-start(process.env.MONGO_URI, process.env.PORT);
+start(process.env.MONGO_URI, port);
