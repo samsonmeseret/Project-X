@@ -5,6 +5,7 @@ const AuthController = require("../controller/AuthController");
 const imageHanddler = require("../middlewares/imageHanddler");
 //Auth
 
+
 Router.route("/signup").post(AuthController.signup);
 Router.route("/login").post(AuthController.login);
 Router.route("/user/forgotPassword").post(AuthController.forgotPassword);
@@ -23,6 +24,7 @@ Router.route("/user/deleteMe").delete(userController.deleteMe);
 
 Router.route("/users")
   .get(AuthController.restrictTo("admin"), userController.findAlluser)
+  // .get(userController.findAlluser)
   .post(AuthController.restrictTo("admin"), userController.createUser);
 
 Router.route("/users/:id")

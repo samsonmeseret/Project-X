@@ -49,7 +49,7 @@ exports.findUser = CatchAsync(async (req, res, next) => {
   }
 });
 exports.findAlluser = CatchAsync(async (req, res, next) => {
-  const { sex, firstname, sort, phone } = req.query;
+  const { sex, role, firstname, lastname, sort, phone } = req.query;
 
   let queryObject = {};
 
@@ -58,6 +58,12 @@ exports.findAlluser = CatchAsync(async (req, res, next) => {
   }
   if (firstname) {
     queryObject.firstname = { $regex: firstname, $options: "i" };
+  }
+  if (lastname) {
+    queryObject.lastname = { $regex: lastname, $options: "i" };
+  }
+  if (role) {
+    queryObject.role = { $regex: role, $options: "i" };
   }
   if (phone) {
     queryObject.phone = { $regex: phone };
@@ -78,7 +84,7 @@ exports.findAlluser = CatchAsync(async (req, res, next) => {
 
   result = result.skip(skip).limit(limit);
 
-  console.log(queryObject);
+  // console.log(queryObject);
 
   const allUser = await result;
   if (!allUser) {

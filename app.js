@@ -2,6 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
+const cors =require('cors')
 require("dotenv").config();
 const patientRouter = require("./route/patientRouter");
 const bookingRouter = require("./route/bookingRouter");
@@ -19,7 +20,7 @@ const app = express();
 
 //Secure the Header
 app.use(helmet());
-
+app.use(cors())
 //Limit the requsts from the same IP's....protections against {DDOS & brute forse attacts}
 const Limiter = rateLimit({
   max: 100,
@@ -52,9 +53,9 @@ app.use(
     ],
   })
 );
+app.use(authRouter);
 app.use(bookingRouter);
 app.use(patientRouter);
-app.use(authRouter);
 app.use(expenseRouter);
 
 app.use(notFound);
