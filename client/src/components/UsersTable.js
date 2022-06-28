@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import MaterialTable from "material-table";
 import tableIcons from "../Icons";
 import axios from 'axios'
+import AuthContext from "../context/AuthProvider";
+
 
 const UserTable = ()=>{
-  
+  const {auth} = useContext(AuthContext)
     return (
       <div style={{ maxWidth: "100%" }}>
         <MaterialTable
@@ -52,7 +54,8 @@ const UserTable = ()=>{
                 url+=`&page=${query.page + 1}`
                 url+=`&limit=${query.pageSize}`
                 console.log(query);
-                axios.get(url, { headers: {"authorization" : `Bearer ${token}`} }).then((res)=>{
+                
+                axios.get(url, { headers: {"authorization" : `Bearer ${auth.token}`} } ).then((res)=>{
                   
                   resolve({
                       data:res.data.data, // your data array
