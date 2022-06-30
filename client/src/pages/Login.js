@@ -12,7 +12,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const { setToken } = useContext(AuthContext);
+  // const { setToken } = useContext(AuthContext);
 
   const userRef = useRef();
   const errRef = useRef();
@@ -20,7 +20,6 @@ const Login = () => {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState();
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -38,7 +37,6 @@ const Login = () => {
       const response = await axios.post(url, { email: user, password: pwd });
       const token = response.data.token;
       localStorage.setItem("token", token);
-      setToken(token);
     } catch (err) {
       if (!err.response) {
         setErrMsg("No Server Response");
@@ -56,64 +54,60 @@ const Login = () => {
   };
   return (
     <>
-      {success ? (
-        <h1 style={{ textAlign: "center" }}>Logged in Successfully</h1>
-      ) : (
-        <div>
-          <p ref={errRef}>{errMsg}</p>
-          <h1 style={{ color: "blueviolet", textAlign: "center" }}>HealEye</h1>
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "25ch" },
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
+      <div>
+        <p ref={errRef}>{errMsg}</p>
+        <h1 style={{ color: "blueviolet", textAlign: "center" }}>HealEye</h1>
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 1, width: "25ch" },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          noValidate
+          autoComplete="off"
+          onSubmit={submitHanddler}
+        >
+          <TextField
+            ref={userRef}
+            value={user}
+            onChange={(e) => {
+              setUser(e.target.value);
             }}
-            noValidate
-            autoComplete="off"
-            onSubmit={submitHanddler}
+            type={"email"}
+            required
+            id="outlined-basic"
+            label="Email"
+            variant="outlined"
+          />
+          <TextField
+            id="outlined"
+            value={pwd}
+            onChange={(e) => {
+              setPwd(e.target.value);
+            }}
+            label="Password"
+            type={"password"}
+            variant="outlined"
+          />
+          <Button
+            sx={{
+              background: "#f1f5f8",
+              padding: ".8rem 0",
+              fontWeight: "500",
+              textTransform: "capitalize",
+              color: "#444",
+              background: "#f1f5f8",
+              display: "inline",
+            }}
+            type="submit"
           >
-            <TextField
-              ref={userRef}
-              value={user}
-              onChange={(e) => {
-                setUser(e.target.value);
-              }}
-              type={"email"}
-              required
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-            />
-            <TextField
-              id="outlined"
-              value={pwd}
-              onChange={(e) => {
-                setPwd(e.target.value);
-              }}
-              label="Password"
-              type={"password"}
-              variant="outlined"
-            />
-            <Button
-              sx={{
-                background: "#f1f5f8",
-                padding: ".8rem 0",
-                fontWeight: "500",
-                textTransform: "capitalize",
-                color: "#444",
-                background: "#f1f5f8",
-                display: "inline",
-              }}
-              type="submit"
-            >
-              Sign in
-            </Button>
-          </Box>
-        </div>
-      )}
+            Sign in
+          </Button>
+        </Box>
+      </div>
     </>
   );
 };

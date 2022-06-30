@@ -3,7 +3,7 @@ import { Navigate, useLocation, Outlet } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
 
 const ProtectedRoute = ({ children }) => {
-  //   const { user, token } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const token = localStorage.getItem("token");
   const location = useLocation();
 

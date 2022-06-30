@@ -9,8 +9,11 @@ import Home from "./pages/Home";
 const ME_URL = "http://localhost:4000/me";
 
 const App = () => {
-  const { setUser, user, setToken } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
   const token = localStorage.getItem("token");
+  // if (token.length > 0) {
+  //   setToken(token);
+  // }
 
   useEffect(() => {
     let isMounted = true;
@@ -22,10 +25,9 @@ const App = () => {
           headers: { authorization: `Bearer ${token}` },
           signal: controller.signal,
         });
-        console.log(response.data.me);
-        const me = response.data.me;
-        isMounted && setToken(token);
-        isMounted && setUser(me);
+        console.log(response.data.me.role);
+        const role = response.data.me.role;
+        isMounted && setUser(role);
       } catch (err) {
         console.log(err.response);
       }

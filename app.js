@@ -2,7 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
-const cors =require('cors')
+const cors = require("cors");
 require("dotenv").config();
 const patientRouter = require("./route/patientRouter");
 const bookingRouter = require("./route/bookingRouter");
@@ -15,12 +15,12 @@ const CatchAsync = require("./utils/CatchAsync");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
-const port = 4000 || process.env.PORT
+const port = 4000 || process.env.PORT;
 const app = express();
 
 //Secure the Header
 app.use(helmet());
-app.use(cors())
+app.use(cors());
 //Limit the requsts from the same IP's....protections against {DDOS & brute forse attacts}
 const Limiter = rateLimit({
   max: 100,
