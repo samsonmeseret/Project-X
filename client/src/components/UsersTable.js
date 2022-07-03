@@ -4,6 +4,8 @@ import { forwardRef } from "react";
 import Avatar from "react-avatar";
 import Grid from "@material-ui/core/Grid";
 import AuthContext from "../context/AuthProvider";
+import { useApi } from "../api/axiosWithHeader";
+import Loader from "./Loader";
 
 import MaterialTable from "material-table";
 import AddBox from "@material-ui/icons/AddBox";
@@ -49,11 +51,6 @@ const tableIcons = {
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
-const token = localStorage.getItem("token");
-const api = axios.create({
-  baseURL: `http://localhost:4000`,
-  headers: { authorization: `Bearer ${token}` },
-});
 
 function validateEmail(email) {
   const re =
@@ -81,7 +78,7 @@ function App() {
     { title: "Last name", field: "lastname" },
     { title: "Role", field: "role" },
     { title: "Sex", field: "sex" },
-    { title: "email", field: "email", hidden: true },
+    { title: "email", field: "email" },
     { title: "Phone", field: "phone" },
     {
       title: "password",
@@ -99,15 +96,21 @@ function App() {
   //for error handling
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  const api = useApi();
   useEffect(() => {
+    setLoading(true);
     api
       .get("/users")
       .then((res) => {
         setData(res.data.data);
+        setLoading(false);
+        console.log(res.data.data);
       })
       .catch((error) => {
-        console.log("Error");
+        setLoading(false);
+        console.log("Error of Authorization to get the users data");
       });
   }, []);
 
@@ -202,7 +205,9 @@ function App() {
       });
   };
 
-  return user === "admin" ? (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="App">
       <Grid container spacing={1}>
         <Grid item xs={12}></Grid>
@@ -243,6 +248,7 @@ function App() {
                 new Promise((resolve) => {
                   handleRowAdd(newData, resolve);
                 }),
+
               onRowDelete: (oldData) =>
                 new Promise((resolve) => {
                   handleRowDelete(oldData, resolve);
@@ -253,8 +259,6 @@ function App() {
         <Grid item xs={3}></Grid>
       </Grid>
     </div>
-  ) : (
-    <Denied />
   );
 }
 

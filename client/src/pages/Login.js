@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
+import { Signin } from "../context/AuthProvider";
 import axios from "axios";
 const url = "http://localhost:4000/login";
 
@@ -34,23 +35,22 @@ const Login = () => {
       return setErrMsg("Missing Username or Password");
     }
     try {
-      const response = await axios.post(url, { email: user, password: pwd });
-      const token = response.data.token;
-      localStorage.setItem("token", token);
+      await Signin(user, pwd);
     } catch (err) {
+      console.log(err.response);
       if (!err.response) {
         setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
+      } else if (err.response.status === 400) {
         setErrMsg("Please provid Email and Password!");
-      } else if (err.response?.status === 401) {
+      } else if (err.response.status === 401) {
         setErrMsg("Invalid email or password");
       } else {
         setErrMsg("Login failed");
       }
     }
+    navigate(from, { replace: true });
     setUser("");
     setPwd("");
-    navigate(from, { replace: true });
   };
   return (
     <>
