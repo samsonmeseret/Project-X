@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { forwardRef } from "react";
 import Avatar from "react-avatar";
 import Grid from "@material-ui/core/Grid";
-import AuthContext from "../context/AuthProvider";
+import AuthContext from "../context/Auth";
 import { useApi } from "../api/axiosWithHeader";
 import Loader from "./Loader";
 
@@ -58,9 +58,7 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
-function App() {
-  const { user } = useContext(AuthContext);
-
+function UsersTable() {
   var columns = [
     { title: "id", field: "_id", hidden: true },
     {
@@ -98,7 +96,9 @@ function App() {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // Axios with the token
   const api = useApi();
+
   useEffect(() => {
     setLoading(true);
     api
@@ -106,7 +106,7 @@ function App() {
       .then((res) => {
         setData(res.data.data);
         setLoading(false);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((error) => {
         setLoading(false);
@@ -262,4 +262,4 @@ function App() {
   );
 }
 
-export default App;
+export default UsersTable;

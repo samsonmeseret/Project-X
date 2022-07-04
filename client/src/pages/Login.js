@@ -3,8 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import AuthContext from "../context/AuthProvider";
-import { Signin } from "../context/AuthProvider";
+import AuthContext from "../context/Auth";
 import axios from "axios";
 const url = "http://localhost:4000/login";
 
@@ -13,7 +12,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  // const { setToken } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const userRef = useRef();
   const errRef = useRef();
@@ -35,7 +34,10 @@ const Login = () => {
       return setErrMsg("Missing Username or Password");
     }
     try {
-      await Signin(user, pwd);
+      const response = await axios.post(url, { email: user, password: pwd });
+      const token = response.data.token;
+      console.log(response.data.token);
+      login(token);
     } catch (err) {
       console.log(err.response);
       if (!err.response) {
