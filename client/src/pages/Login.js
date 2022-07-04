@@ -56,7 +56,7 @@ const Login = () => {
   };
   return (
     <>
-      <div>
+      <div style={{ paddingTop: "10rem" }}>
         <p ref={errRef}>{errMsg}</p>
         <h1 style={{ color: "blueviolet", textAlign: "center" }}>HealEye</h1>
         <Box
@@ -67,6 +67,7 @@ const Login = () => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            zIndex: "99",
           }}
           noValidate
           autoComplete="off"
@@ -83,6 +84,9 @@ const Login = () => {
             id="outlined-basic"
             label="Email"
             variant="outlined"
+            style={{
+              width: "25rem",
+            }}
           />
           <TextField
             id="outlined"
@@ -93,16 +97,17 @@ const Login = () => {
             label="Password"
             type={"password"}
             variant="outlined"
+            style={{
+              width: "25rem",
+            }}
           />
           <Button
-            sx={{
-              background: "#f1f5f8",
-              padding: ".8rem 0",
-              fontWeight: "500",
-              textTransform: "capitalize",
-              color: "#444",
-              background: "#f1f5f8",
-              display: "inline",
+            style={{
+              background: "#8159f0",
+              padding: ".8rem 3rem",
+              width: "auto",
+              fontSize: "1.4rem",
+              color: "white",
             }}
             type="submit"
           >

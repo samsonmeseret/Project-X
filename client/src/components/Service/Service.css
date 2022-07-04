@@ -1,0 +1,83 @@
+.MainDiv {
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f5f8;
+  box-shadow: 0 0 1px rgb(221, 228, 235);
+  border-radius: 15px;
+  margin: 5rem;
+  text-align: center;
+}
+.ServiceTitle h2 {
+  font-family: "Lora", serif;
+  font-size: 5rem;
+  color: #324f88;
+  padding-top: 3rem;
+  margin-bottom: 20px;
+}
+
+.UpperDiv h4 {
+  font-family: "Lora", serif;
+  font-size: 20px;
+  color: rgb(4, 2, 5);
+  margin-top: 0;
+  margin: 3rem;
+  display: block;
+  text-align: center;
+}
+.ServiceFull h5 {
+  font-family: "Ubuntu", sans-serif !important;
+  font-size: 24px !important;
+  color: rgb(55, 6, 70) !important;
+}
+.ServiceFull {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr)) !important;
+  gap: 2rem;
+  margin: 1rem;
+  padding-bottom: 2rem;
+}
+@media only screen and (min-width: 1300px) {
+  .ServiceFull {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr)) !important;
+    gap: 1rem;
+    margin: 1.5rem;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .ServiceFull {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr)) !important;
+    gap: 1rem;
+    margin: 1.5rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .ServiceFull {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr)) !important;
+    gap: 2rem;
+    margin: 1.5rem;
+  }
+}
+@media only screen and (max-width: 511px) {
+  .MainDiv {
+    width: 100%;
+    text-align: center;
+    border-radius: 15px;
+  }
+  .ServiceTitle h2 {
+    font-size: 3rem;
+    color: #324f88;
+    padding-top: 3rem;
+  }
+  .UpperDiv h4 {
+    font-size: 2rem;
+  }
+  .ServiceFull {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)) !important;
+    gap: 2rem;
+    margin: 1.5rem;
+  }
+}

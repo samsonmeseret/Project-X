@@ -1,0 +1,185 @@
+.Our-teams {
+  height: 10rem;
+  padding: 2px;
+  text-align: center;
+  margin: 3rem;
+}
+.team-heading h2 {
+  font-family: "Lora", serif;
+  text-align: center;
+  font-size: 4rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.team-heading h4 {
+  font-family: "Lora", serif;
+  margin: 1rem 20rem;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.person-detail {
+  padding-top: 20rem;
+  padding: 10px;
+  margin: 25px 0rem 0.5rem;
+  line-height: 2.5rem;
+  position: relative;
+  transition: all 0.7s ease 0s;
+  -webkit-transition: all 0.7s ease 0s;
+  -moz-transition: all 0.7s ease 0s;
+  -o-transition: all 0.7s ease 0s;
+  -ms-transition: all 0.7s ease 0s;
+}
+.person-detail p {
+  font-family: "Ubuntu", sans-serif;
+  text-decoration: solid;
+  text-align: justify;
+  padding: 1rem;
+  font-size: 13px;
+  color: rgb(85, 17, 68);
+  font-family: "Open Sans", sans-serif;
+}
+.doctor-cont {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+.Doctors-Field {
+  width: 80rem;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)) !important;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.EachDoctors {
+  max-height: 444px !important;
+  background-color: #f1f5f8;
+  box-shadow: 0 0 2px rgb(166, 175, 184);
+  border-radius: 15px;
+}
+.Doctors-Detail h4 {
+  padding-top: 2rem;
+  font-family: "Lora", serif;
+  font-size: 10px !important;
+  text-align: justify;
+  line-height: 20px;
+}
+.person-detail h3 {
+  font-family: "Lora", serif;
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  color: rgb(81, 8, 83);
+}
+.person img {
+  padding: 2%;
+  margin-left: 15%;
+  align-self: center;
+  width: 100%;
+}
+
+.arrow-bottom {
+  position: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 50%;
+  margin-bottom: 2rem;
+  background: #3ba0cc;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  top: -9px;
+  left: 46%;
+  transition: all 0.7s ease 0s;
+  -webkit-transition: all 0.7s ease 0s;
+  -moz-transition: all 0.7s ease 0s;
+  -o-transition: all 0.7s ease 0s;
+  -ms-transition: all 0.7s ease 0s;
+}
+.single-member:hover .person-detail {
+  background: #2a2a2a;
+}
+.single-member:hover .arrow-top {
+  background: #2a2a2a;
+}
+.single-member:hover .arrow-bottom {
+  background: #2a2a2a;
+}
+@media screen and (max-width: 960px) {
+  .Doctors-Field {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)) !important;
+    gap: 5rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .doctor-cont {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .person img {
+    margin-left: 10%;
+  }
+  .team-heading h4 {
+    margin: 1rem 10rem;
+  }
+}
+@media screen and (max-width: 780px) {
+  .Doctors-Field {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr)) !important;
+    gap: 5rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .doctor-cont {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .person img {
+    margin-left: 10%;
+  }
+  .team-heading h4 {
+    margin: 1rem 10rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Doctors-Field {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)) !important;
+    gap: 10rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .team-heading h2 {
+    font-size: 4rem;
+  }
+  .team-heading h4 {
+    font-size: 1.5rem;
+  }
+  .EachDoctors{
+    margin: 0 1rem !important;
+    min-width: 200px !important;
+  }
+  .person-detail h3 {
+    font-size: 2.5rem;
+  }
+  .person-detail p {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  .person img {
+    width: 200px !important;
+    padding:20px;
+    margin-left: 0 !important;
+  }
+  
+}

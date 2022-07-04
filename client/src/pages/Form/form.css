@@ -1,0 +1,120 @@
+.Main-container {
+  position: relative;
+  max-width: 50rem;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8f9fd;
+  box-shadow: 0 0 10px lightslategray;
+  border-radius: 15px;
+}
+
+.warning {
+  margin: 2rem auto;
+  background-color: #e8f9fd;
+}
+
+.success {
+  width: 40rem;
+  display: flex;
+  gap: 2rem;
+  margin: 1rem;
+}
+.btn,
+.btn:link,
+.btn:visited {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border: none;
+  text-decoration: none;
+  width: 20rem;
+  text-align: center;
+  margin: 0 auto;
+}
+.btn-primary {
+  height: 2rem;
+  color: rgb(56, 63, 66);
+  background-color: #e8f9fd;
+  outline: 2px solid rgb(81, 142, 235);
+  border-radius: 10px;
+}
+.btn-primary:hover,
+.btn-primary:active {
+  outline: 2px solid rgb(4, 113, 255);
+  color: rgb(0, 0, 0);
+}
+.btn-secondary {
+  color: rgb(56, 63, 66);
+  border-radius: 10px;
+  outline: 2px solid rgb(122, 153, 168);
+  box-shadow: 2px solid rgb(131, 133, 128);
+}
+.form-btn {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+.btn-secondary:hover,
+.btn-secondary:active {
+  outline: 2px solid rgb(82, 186, 212);
+  color: rgb(0, 0, 0);
+}
+.title {
+  font-family: cursive;
+  color: rgb(1, 102, 253);
+  font-size: 2rem;
+  font-weight: 300;
+  padding: 1rem 2rem;
+  margin: 2rem auto 0 auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  gap: 1.5rem;
+  width: 100%;
+  font-size: 2rem;
+  padding: 2rem;
+}
+.form-item {
+  font-size: 1.8rem;
+  padding: 0.5rem 1rem;
+  width: 37rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+input[type="text"] {
+  font-size: 1.8rem;
+  padding: 0.5rem 1rem;
+}
+.text-field {
+  font-size: 1.8rem !important;
+}
+.text-field label {
+  font-size: 1.8rem !important;
+}
+input[type="number"] {
+  font-size: 1.8rem;
+  padding: 0.5rem 1rem;
+}
+input[type="email"] {
+  font-size: 1.8rem;
+  padding: 0.5rem 1rem;
+}
+.datePicker {
+  font-size: 1.8rem;
+}
+
+.buttonHolder{
+  margin:auto;
+}
+
+.date-pickerr label {
+  font-size: 1.9rem !important;
+}
+

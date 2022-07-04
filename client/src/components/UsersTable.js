@@ -228,14 +228,15 @@ function UsersTable() {
             icons={tableIcons}
             options={{
               headerStyle: {
-                backgroundColor: "#f1f5f8",
-                borderBottomColor: "blue",
+                // backgroundColor: "#f1f5f8",
+                // borderBottomColor: "blue",
               },
               rowStyle: {
-                backgroundColor: "#f2f5f8",
+                // backgroundColor: "#f2f5f8",
               },
+
               exportButton: true,
-              padding: "dense",
+              padding: "defaul",
               maxBodyHeight: "590px",
               actionsColumnIndex: -1,
             }}
