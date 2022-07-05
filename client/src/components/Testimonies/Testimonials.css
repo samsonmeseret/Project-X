@@ -10,11 +10,18 @@
   color: black;
   height: 100%;
 }
-
+.testimony h1{
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.8rem;
+  color:#787878;
+  padding: 3rem;
+}
 .carousel .slide img {
   width: 200px !important;
   margin-top: 2rem !important;
   border-radius: 50%;
+  border: 5px solid #ac93f1;
 }
 
 .myCarousel {
@@ -27,8 +34,8 @@
   padding-bottom: 8%;
   padding-left: 5%;
   padding-right: 5%;
-  border: 1px solid #ddd;
-  height: 286px;
+  border: 1px solid #9979f0;
+  height: 100%;
   border-radius: 10px;
 }
 
@@ -94,7 +101,7 @@
 }
 
 .carousel.carousel-slider .control-arrow {
-  background: rgb(168, 201, 211) !important;
+  background: #855ef1 !important;
   height: 50px !important;
   position: absolute;
   margin-top: 25% !important;
@@ -114,9 +121,9 @@
   .carousel .slide img {
     width: 139px !important;
   }
-  /* .carousel.carousel-slider .control-arrow {
-      display: none !important;
-    } */
+   .carousel.carousel-slider .control-arrow {
+      display: none;
+    }
   .myCarousel {
     background: #fafafa;
     margin-top: -9%;
@@ -128,11 +135,46 @@
     padding-left: 5%;
     padding-right: 5%;
     border: 1px solid #ddd;
-    height: 269px;
+    height: 286px;
   }
 
   .carousel .slide img {
-    width: 24% !important;
+    /* width: 24% !important; */
     border-radius: 50%;
   }
+}  
+@media only screen and (min-width: 1000px) {
+  .carousel-root {
+    outline: 0;
+    width: 60%;
+    margin: auto !important;
+    margin-bottom: 4rem !important;
+  }
+
+  /* .carousel .slide img {
+    width: 139px !important;
+  } */
+
+  /* .carousel.carousel-slider .control-arrow {
+    display: none;
+  } */
+
+  .myCarousel {
+    background: #fafafa;
+    /* margin-top: -9%; */
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 8%;
+    padding-bottom: 12.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: 1px solid #ddd;
+    height: 286px;
+  }
+/* 
+  .carousel .slide img {
+    width: 24% !important;
+    border-radius: 50%;
+  } */
 }

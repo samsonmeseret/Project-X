@@ -8,50 +8,61 @@ import Member3 from "../img/member3.jpg";
 
 const Testimonials = () => {
   return (
-    <Carousel
-      showArrows={true}
-      infiniteLoop={true}
-      showThumbs={false}
-      showStatus={false}
-      autoPlay={true}
-      interval={6100}
-    >
-      <div>
-        <img src={Member1} />
-        <div className="myCarousel">
-          <h3>Shirley Fultz</h3>
-          <h4>Designer</h4>
-          <p>
-            It's freeing to be able to catch up on customized news and not be
-            distracted by a social media element on the same site
-          </p>
+    <section className="testimony">
+      <h1>What Others Say</h1>
+      <Carousel
+        showArrows={true}
+        infiniteLoop={true}
+        showThumbs={false}
+        showStatus={false}
+        autoPlay={true}
+        interval={6100}
+        stopOnHover={true}
+      >
+        <div>
+          <img src={Member1} />
+          <div className="myCarousel">
+            <h3>Shirley Fultz</h3>
+            <h4>Designer</h4>
+            <p>
+              It's freeing to be able to catch up on customized news and not be
+              distracted Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Voluptates libero consectetur debitis, quaerat maxime alias
+              eum aliquid id. Cupiditate, assumenda. by a social media element
+              on the same site
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div>
-        <img src={Member2} />
-        <div className="myCarousel">
-          <h3>Daniel Keystone</h3>
-          <h4>Designer</h4>
-          <p>
-            The simple and intuitive design makes it easy for me use. I highly
-            recommend Fetch to my peers.
-          </p>
+        <div>
+          <img src={Member2} />
+          <div className="myCarousel">
+            <h3>Daniel Keystone</h3>
+            <h4>Designer</h4>
+            <p>
+              The simple and intuitive design makes it easy for me use. I highly
+              recommend distracted Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Voluptates libero consectetur debitis, quaerat
+              maxime alias eum al Fetch to my peers.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div>
-        <img src={Member3} />
-        <div className="myCarousel">
-          <h3>Theo Sorel</h3>
-          <h4>Designer</h4>
-          <p>
-            I enjoy catching up with Fetch on my laptop, or on my phone when I'm
-            on the go!
-          </p>
+        <div>
+          <img src={Member3} />
+          <div className="myCarousel">
+            <h3>Theo Sorel</h3>
+            <h4>Designer</h4>
+            <p>
+              I enjoy catching up with Fetch on my laptop, or on my phone when
+              I'm on the go! distracted Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Voluptates libero consectetur debitis, quaerat
+              maxime alias eum al
+            </p>
+          </div>
         </div>
-      </div>
-    </Carousel>
+      </Carousel>
+    </section>
   );
 };
 

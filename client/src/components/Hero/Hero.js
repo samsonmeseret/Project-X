@@ -7,14 +7,14 @@ const Hero = () => {
     <>
       <section className="hero">
         <div className="hero-text">
-          <h1>We Care About Your Health</h1>
+          <h1>We care about your Health</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea,
             corrupti. Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Voluptatum Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Nam, laboriosam!
           </p>
-          <a className="hero-btn" href="www.healeye.com">
+          <a className="hero-btn" href="/book">
             Connect to our Doctor's
           </a>
         </div>

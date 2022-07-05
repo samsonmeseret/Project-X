@@ -42,7 +42,7 @@ const Navigation = () => {
                   Book
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   to={"/Services"}
                   style={({ isActive }) => {
@@ -51,7 +51,7 @@ const Navigation = () => {
                 >
                   Services
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink
                   to={"/contacts"}
@@ -59,7 +59,7 @@ const Navigation = () => {
                     return isActive ? activeStyle : undefined;
                   }}
                 >
-                  Contact
+                  Contacts
                 </NavLink>
               </li>
               {!isLoggedIn ? (
@@ -70,7 +70,7 @@ const Navigation = () => {
                       return isActive ? activeStyle : undefined;
                     }}
                   >
-                    Sign in
+                    SignIn
                   </NavLink>
                 </li>
               ) : (
@@ -93,7 +93,7 @@ const Navigation = () => {
                       return isActive ? activeStyle : undefined;
                     }}
                   >
-                    Sign Out
+                    SignOut
                   </NavLink>
                 </li>
               ) : undefined}
