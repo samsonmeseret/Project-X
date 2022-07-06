@@ -1,5 +1,5 @@
 .carousel-root {
-  width: 80rem !important;
+  width: auto !important;
   margin: auto !important;
   margin-top: 3% !important;
   margin-bottom: 4rem !important;
@@ -8,7 +8,7 @@
 .carousel .slide {
   background: transparent !important;
   color: black;
-  height: 100%;
+  height: 100% !;
 }
 .testimony h1{
   text-align: center;
@@ -111,7 +111,7 @@
   text-align: center;
 }
 
-@media only screen and (max-width: 934px) {
+@media only screen and (max-width:1016px) {
   .carousel-root {
     outline: 0;
     width: auto !important;
@@ -139,42 +139,15 @@
   }
 
   .carousel .slide img {
-    /* width: 24% !important; */
+    width: 24% !important;
     border-radius: 50%;
   }
 }  
-@media only screen and (min-width: 1000px) {
-  .carousel-root {
-    outline: 0;
-    width: 60%;
-    margin: auto !important;
-    margin-bottom: 4rem !important;
-  }
-
-  /* .carousel .slide img {
-    width: 139px !important;
-  } */
-
-  /* .carousel.carousel-slider .control-arrow {
-    display: none;
-  } */
-
-  .myCarousel {
-    background: #fafafa;
-    /* margin-top: -9%; */
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 8%;
-    padding-bottom: 12.5%;
-    padding-left: 5%;
-    padding-right: 5%;
-    border: 1px solid #ddd;
-    height: 286px;
-  }
-/* 
-  .carousel .slide img {
-    width: 24% !important;
-    border-radius: 50%;
-  } */
-}
+/* @media screen and (min-width: 935px) and (max-width: 1016px) {
+    .carousel-root {
+        outline: 0;
+        width: auto !important;
+        margin: auto !important;
+        margin-bottom: 4rem !important;
+      }
+} */

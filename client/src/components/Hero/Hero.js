@@ -1,6 +1,7 @@
 import React from "react";
 import "./hero.css";
 import Kume from "../svg/Kume";
+import { SvgBlob } from "react-svg-blob";
 
 const Hero = () => {
   return (
@@ -19,7 +20,15 @@ const Hero = () => {
           </a>
         </div>
         <div className="hero-image">
-          <Kume p="width:340 height:480" />
+          <SvgBlob
+            variant="pattern"
+            pattern={{ allPatterns: 2 }}
+            color="#d1d8e0"
+            shapeProps={{ size: 300, growth: 20, edges: 9 }}
+            isOutline={0.3 < 0.5}
+          >
+            <Kume p="width:340 height:480" />
+          </SvgBlob>
         </div>
       </section>
     </>

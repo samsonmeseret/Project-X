@@ -67,7 +67,7 @@ const Login = () => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            zIndex: "99",
+            // background: "blue",
           }}
           noValidate
           autoComplete="off"
@@ -85,7 +85,7 @@ const Login = () => {
             label="Email"
             variant="outlined"
             style={{
-              width: "25rem",
+              width: "20rem",
             }}
           />
           <TextField
@@ -98,15 +98,15 @@ const Login = () => {
             type={"password"}
             variant="outlined"
             style={{
-              width: "25rem",
+              width: "20rem",
             }}
           />
           <Button
             style={{
               background: "#8159f0",
-              padding: ".8rem 3rem",
+              padding: ".5rem 2rem",
               width: "auto",
-              fontSize: "1.4rem",
+              fontSize: "1rem",
               color: "white",
             }}
             type="submit"

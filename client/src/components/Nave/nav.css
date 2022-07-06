@@ -13,6 +13,7 @@
   z-index: 9999;
 }
 .nav {
+  position: relative;
   width: 95%;
   display: flex;
   justify-content: space-between;

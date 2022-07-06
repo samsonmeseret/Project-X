@@ -22,7 +22,7 @@ function Team() {
                   className="img-responsive"
                   src={DrKume}
                   alt="Dr Kumele Tolosa"
-                  style={{ width: 200, height: 200, borderRadius: 400 / 2 }}
+                  style={{ width: 200, height: 200, borderRadius: "40px" }}
                 />
               </div>
               <div className="person-detail">
@@ -53,7 +53,7 @@ function Team() {
                   class="img-responsive"
                   src={item2}
                   alt="member-2"
-                  style={{ width: 200, height: 200, borderRadius: 400 / 2 }}
+                  style={{ width: 200, height: 200, borderRadius: "40px" }}
                 />
               </div>
             </div>
@@ -63,7 +63,7 @@ function Team() {
                   className="img-responsive"
                   src={item2}
                   alt="member-1"
-                  style={{ width: 200, height: 200, borderRadius: 400 / 2 }}
+                  style={{ width: 200, height: 200, borderRadius: "40px" }}
                 />
               </div>
               <div className="person-detail">
