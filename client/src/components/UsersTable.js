@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import AuthContext from "../context/Auth";
 import { useApi } from "../api/axiosWithHeader";
 import Loader from "./Loader";
+import "./userstable.css";
 
 import MaterialTable from "material-table";
 import AddBox from "@material-ui/icons/AddBox";
@@ -208,7 +209,7 @@ function UsersTable() {
   return loading ? (
     <Loader />
   ) : (
-    <div className="App">
+    <div className="users_table">
       <Grid container spacing={1}>
         <Grid item xs={12}></Grid>
         <Grid item xs={12}>

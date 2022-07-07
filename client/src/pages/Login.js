@@ -1,13 +1,19 @@
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import AuthContext from "../context/Auth";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import axios from "axios";
+import "./login.css";
+import VisibilityOffOutlined from "@mui/icons-material/VisibilityOffOutlined";
 const url = "http://localhost:4000/login";
 
 const Login = () => {
+  const [showPwd, setShowPwd] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -56,9 +62,14 @@ const Login = () => {
   };
   return (
     <>
-      <div style={{ paddingTop: "10rem" }}>
+      <div className="login">
         <p ref={errRef}>{errMsg}</p>
-        <h1 style={{ color: "blueviolet", textAlign: "center" }}>HealEye</h1>
+        <div className="logo">
+          <LockOutlinedIcon />
+          <h1>
+            <span>Heal</span> Eye
+          </h1>
+        </div>
         <Box
           component="form"
           sx={{
@@ -83,7 +94,7 @@ const Login = () => {
             required
             id="outlined-basic"
             label="Email"
-            variant="outlined"
+            variant="standard"
             style={{
               width: "20rem",
             }}
@@ -95,10 +106,26 @@ const Login = () => {
               setPwd(e.target.value);
             }}
             label="Password"
-            type={"password"}
-            variant="outlined"
+            type={showPwd ? "text" : "password"}
+            variant="standard"
             style={{
               width: "20rem",
+            }}
+            InputProps={{
+              endAdornment: (
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => {
+                    setShowPwd(!showPwd);
+                  }}
+                >
+                  {showPwd ? (
+                    <VisibilityOutlinedIcon />
+                  ) : (
+                    <VisibilityOffOutlined />
+                  )}
+                </IconButton>
+              ),
             }}
           />
           <Button

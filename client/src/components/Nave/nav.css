@@ -26,6 +26,7 @@ height: 5rem;
   display: flex;
   align-items: center;
   z-index: 9999;
+  transition: all .4s;
 }
 .nav-links ul {
   display: flex;
@@ -76,6 +77,7 @@ height: 5rem;
   font-size: 2rem;
   padding: 1rem;
   z-index: 9999;
+  transition: all .4s;
 }
 .toggle ul {
   display: flex;
