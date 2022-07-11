@@ -1,0 +1,35 @@
+.dashboard{
+    display: grid;
+    grid-template-columns: auto 1fr;
+   
+}
+.upnav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+    padding: .2rem 0;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: #eeeff1;
+    border-radius: 50%;
+    transition: all .3s;
+}
+.menu:hover{
+    background-color: #e3e7f0;
+}
+.menu svg{
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #585ab1;
+}
+.signout a:link, .signout a:visited{
+    text-decoration: none;
+padding: 0 1rem;
+}

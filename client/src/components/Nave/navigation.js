@@ -76,12 +76,12 @@ const Navigation = () => {
               ) : (
                 <li>
                   <NavLink
-                    to={"/staff"}
+                    to={"/workspace"}
                     style={({ isActive }) => {
                       return isActive ? activeStyle : undefined;
                     }}
                   >
-                    Dashbaord
+                    WorkSpace
                   </NavLink>
                 </li>
               )}

@@ -70,20 +70,7 @@ const Login = () => {
             <span>Heal</span> Eye
           </h1>
         </div>
-        <Box
-          component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "25ch" },
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            // background: "blue",
-          }}
-          noValidate
-          autoComplete="off"
-          onSubmit={submitHanddler}
-        >
+        <form action="">
           <TextField
             ref={userRef}
             value={user}
@@ -140,7 +127,7 @@ const Login = () => {
           >
             Sign in
           </Button>
-        </Box>
+        </form>
       </div>
     </>
   );

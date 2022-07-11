@@ -8,9 +8,7 @@ import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import "./sidebar.css";
-const SideBar = (props) => {
-  const [open, setOpen] = React.useState(true);
-
+const SideBar = ({ open }) => {
   return (
     <>
       <div className={open ? "sidebar" : "closed_bar"}>
@@ -50,14 +48,6 @@ const SideBar = (props) => {
             <h4>Samson Meseret</h4>
             <p>Admin</p>
           </div>
-        </div>
-        <div
-          className="menu-toggle"
-          onClick={() => {
-            setOpen(!open);
-          }}
-        >
-          {!open ? <ArrowRightIcon /> : <ArrowLeftIcon />}
         </div>
       </div>
     </>
