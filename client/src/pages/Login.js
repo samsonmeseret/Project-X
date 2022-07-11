@@ -62,72 +62,76 @@ const Login = () => {
   };
   return (
     <>
-      <div className="login">
-        <p ref={errRef}>{errMsg}</p>
-        <div className="logo">
-          <LockOutlinedIcon />
-          <h1>
-            <span>Heal</span> Eye
-          </h1>
+      <div className="login_container">
+        <div className="login">
+          <p ref={errRef}>{errMsg}</p>
+          <div className="logo">
+            <LockOutlinedIcon />
+            <h1>
+              <span>Heal</span> Eye
+            </h1>
+          </div>
+          <div className="login_form">
+            <form onSubmit={submitHanddler}>
+              <TextField
+                ref={userRef}
+                value={user}
+                onChange={(e) => {
+                  setUser(e.target.value);
+                }}
+                type={"email"}
+                required
+                id="outlined-basic"
+                label="Email"
+                variant="standard"
+                style={{
+                  width: "20rem",
+                }}
+              />
+              <TextField
+                id="outlined"
+                value={pwd}
+                onChange={(e) => {
+                  setPwd(e.target.value);
+                }}
+                label="Password"
+                type={showPwd ? "text" : "password"}
+                variant="standard"
+                style={{
+                  width: "20rem",
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => {
+                        setShowPwd(!showPwd);
+                      }}
+                    >
+                      {showPwd ? (
+                        <VisibilityOutlinedIcon />
+                      ) : (
+                        <VisibilityOffOutlined />
+                      )}
+                    </IconButton>
+                  ),
+                }}
+              />
+              <Button
+                style={{
+                  background: "#8159f0",
+                  padding: ".5rem 2rem",
+                  width: "auto",
+                  fontSize: "1rem",
+                  color: "white",
+                }}
+                type="submit"
+              >
+                Sign in
+              </Button>
+            </form>
+          </div>
         </div>
-        <form action="">
-          <TextField
-            ref={userRef}
-            value={user}
-            onChange={(e) => {
-              setUser(e.target.value);
-            }}
-            type={"email"}
-            required
-            id="outlined-basic"
-            label="Email"
-            variant="standard"
-            style={{
-              width: "20rem",
-            }}
-          />
-          <TextField
-            id="outlined"
-            value={pwd}
-            onChange={(e) => {
-              setPwd(e.target.value);
-            }}
-            label="Password"
-            type={showPwd ? "text" : "password"}
-            variant="standard"
-            style={{
-              width: "20rem",
-            }}
-            InputProps={{
-              endAdornment: (
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={() => {
-                    setShowPwd(!showPwd);
-                  }}
-                >
-                  {showPwd ? (
-                    <VisibilityOutlinedIcon />
-                  ) : (
-                    <VisibilityOffOutlined />
-                  )}
-                </IconButton>
-              ),
-            }}
-          />
-          <Button
-            style={{
-              background: "#8159f0",
-              padding: ".5rem 2rem",
-              width: "auto",
-              fontSize: "1rem",
-              color: "white",
-            }}
-            type="submit"
-          >
-            Sign in
-          </Button>
-        </form>
       </div>
     </>
   );

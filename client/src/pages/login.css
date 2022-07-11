@@ -1,12 +1,20 @@
+.login_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 6rem;
+}
 .login{
     display: flex;
     flex-direction: column;
     align-items: center;
     /* width: 50rem; */
     justify-content: center;
-    padding: 7rem 1rem 1rem 1rem;
+    padding: 2rem;
     /* border: 1px solid grey; */
     animation:some 0.5s ease-in;
+    border: 1px solid grey;
+    border-radius: 1rem;
 }
 .login .logo{
     display: flex;
@@ -26,7 +34,19 @@
     height: 2.5rem;
     color: brown;
 }
-
+.login .login_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.login .login_form form{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    gap: 2rem;
+}
 @keyframes some {
     0%{
         transform: translateY(-5rem);
