@@ -17,7 +17,7 @@ const Testimonials = () => {
         showStatus={false}
         autoPlay={true}
         interval={6100}
-        stopOnHover={true}
+        stopOnHover={false}
       >
         <div>
           <img src={Member1} />

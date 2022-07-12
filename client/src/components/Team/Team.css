@@ -69,7 +69,7 @@ width: 100%;
   transition: all .3s;
 }
 .EachDoctors:hover{
-  background-color: #3ba0cc;
+  background-color: #7d54f0;
   color: white;
 }
 .EachDoctors:hover .arrow-bottom
@@ -102,7 +102,7 @@ width: 100%;
   position: center;
   width: 30px;
   height: 30px;
-  background: #3ba0cc;
+  background: #764af1;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);

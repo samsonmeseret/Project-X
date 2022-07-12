@@ -15,8 +15,8 @@ const Quality = () => {
             <div>
               <FavoriteIcon />
             </div>
-            <div>
-              <h3>title</h3>
+            <div className="quality-text">
+              <h3>Advanced Technology</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Delectus, placeat.
@@ -27,8 +27,8 @@ const Quality = () => {
             <div>
               <FavoriteBorderIcon />
             </div>
-            <div>
-              <h3>title</h3>
+            <div className="quality-text">
+              <h3>Affordable Service</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Delectus, placeat.
@@ -39,8 +39,8 @@ const Quality = () => {
             <div>
               <VolunteerActivismIcon />
             </div>
-            <div>
-              <h3>title</h3>
+            <div className="quality-text">
+              <h3>Customer Support</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Delectus, placeat.
@@ -51,8 +51,8 @@ const Quality = () => {
             <div>
               <StarsIcon />
             </div>
-            <div>
-              <h3>title</h3>
+            <div className="quality-text">
+              <h3>Experianced Phisicians</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Delectus, placeat.
@@ -63,8 +63,8 @@ const Quality = () => {
             <div>
               <AppShortcutOutlinedIcon />
             </div>
-            <div>
-              <h3>title</h3>
+            <div className="quality-text">
+              <h3>Online Booking</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Delectus, placeat.
@@ -75,8 +75,8 @@ const Quality = () => {
             <div>
               <CoronavirusOutlinedIcon />
             </div>
-            <div>
-              <h3>title</h3>
+            <div className="quality-text">
+              <h3>Corona Virus Protection</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Delectus, placeat.

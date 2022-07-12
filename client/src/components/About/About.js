@@ -6,11 +6,10 @@ const About = () => {
     <>
       <section className="about">
         <div>
-          <h1>About Us</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque,
-            aperiam eum delectus velit similique soluta.
-          </p>
+          <h1>
+            Welcome to <span>HealEye </span>Clinic
+          </h1>
+          <p>The place where you get your sight back!</p>
         </div>
         <div></div>
       </section>

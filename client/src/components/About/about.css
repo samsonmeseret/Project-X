@@ -1,9 +1,26 @@
 .about{
     height: 300px;
     width: 100%;
-    background-color: #f1f1f1;
+    background-color: #f3eefc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
 .about h1{
+    font-weight: 300;
     padding: 2rem;
+    font-size: 3rem;
     text-align: center;
+}
+.about h1 span{
+    /* color: blueviolet;
+    font-weight: 500; */
+}
+.about p{
+font-weight: 300;
+font-size: 1.2rem;
+text-align: center;
+/* color: blueviolet; */
 }
