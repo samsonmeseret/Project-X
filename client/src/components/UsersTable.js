@@ -26,7 +26,7 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import axios from "axios";
 import Alert from "@material-ui/lab/Alert";
-import Login from "../pages/Login";
+import Login from "../pages/Sign in/Login";
 import Denied from "./Denied";
 
 const tableIcons = {

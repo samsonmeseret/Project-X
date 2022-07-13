@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import AuthContext from "../../context/Auth";
 import SideBar from "./Sidebar";
 import style from "./main.module.css";
 
 const Main = () => {
   const [open, setOpen] = useState(true);
 
+  const ctx = useContext(AuthContext);
   return (
     <div className={style.dashboard}>
       <SideBar open={open} style={"sidebar"} />
@@ -22,9 +24,13 @@ const Main = () => {
             {open ? <MenuOpenIcon /> : <MenuIcon />}
           </div>
           <div className={style.signout}>
-            <Link onClick={() => {}} to={"/home"}>
+            <button
+              onClick={() => {
+                ctx.logout();
+              }}
+            >
               SignOut
-            </Link>
+            </button>
           </div>
         </div>
         <Outlet />

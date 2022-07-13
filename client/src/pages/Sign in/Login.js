@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import AuthContext from "../context/Auth";
+import AuthContext from "../../context/Auth";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import axios from "axios";
@@ -42,6 +42,10 @@ const Login = () => {
     try {
       const response = await axios.post(url, { email: user, password: pwd });
       const token = response.data.token;
+      const res = await axios.get("http://localhost:4000/me", {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      localStorage.setItem("whami", res.data.me.role);
       console.log(response.data.token);
       login(token);
     } catch (err) {

@@ -10,7 +10,7 @@ const Navigation = () => {
   };
   const [open, setOpen] = useState(false);
 
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, logout } = useContext(AuthContext);
 
   return (
     <>
@@ -62,6 +62,7 @@ const Navigation = () => {
                   Contacts
                 </NavLink>
               </li>
+              {console.log(isLoggedIn)}
               {!isLoggedIn ? (
                 <li>
                   <NavLink
@@ -87,14 +88,13 @@ const Navigation = () => {
               )}
               {isLoggedIn ? (
                 <li>
-                  <NavLink
-                    to={"/auth/signout"}
-                    style={({ isActive }) => {
-                      return isActive ? activeStyle : undefined;
+                  <button
+                    onClick={() => {
+                      logout();
                     }}
                   >
                     SignOut
-                  </NavLink>
+                  </button>
                 </li>
               ) : undefined}
             </ul>

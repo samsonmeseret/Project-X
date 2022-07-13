@@ -23,7 +23,10 @@ export default function Footer() {
           </div>
         </footer>
         <div className="copyright">
-          <p>Copyright `${new Date.getFullYear()}`, HealEye Clinic</p>
+          <p>
+            &copy; Copyright {new Date(Date.now()).getFullYear()}, HealEye
+            Clinic
+          </p>
         </div>
       </div>
     </>
