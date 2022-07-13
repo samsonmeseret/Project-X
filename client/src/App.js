@@ -41,7 +41,7 @@ const App = () => {
           <Route
             path="patients"
             element={
-              <RoleProtectection roles={["admin, doctor, reception"]}>
+              <RoleProtectection roles={["admin", "doctor", "reception"]}>
                 <PatientTable />
               </RoleProtectection>
             }
@@ -49,7 +49,7 @@ const App = () => {
           <Route
             path="expense"
             element={
-              <RoleProtectection roles={["admin, reception"]}>
+              <RoleProtectection roles={["admin", "reception"]}>
                 <ExpenseTable />
               </RoleProtectection>
             }
@@ -57,7 +57,7 @@ const App = () => {
           <Route
             path="booking"
             element={
-              <RoleProtectection roles={["admin, reception"]}>
+              <RoleProtectection roles={["admin", "reception"]}>
                 <BookingTable />
               </RoleProtectection>
             }
