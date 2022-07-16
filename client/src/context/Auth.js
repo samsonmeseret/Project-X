@@ -66,7 +66,7 @@ export const AuthContextProvider = (props) => {
   const contextValue = {
     whami: Whami,
     token: token,
-    expiredIn: expiredIn,
+    // expiredIn: expiredIn,
     isAuthenticated: isAuthenticated(),
     login: loginHandler,
     logout: logoutHandler,
