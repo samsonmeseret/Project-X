@@ -25,6 +25,7 @@ const Main = () => {
           </div>
           <div className={style.signout}>
             <button
+              className={style.btn_logout}
               onClick={() => {
                 ctx.logout();
               }}

@@ -1,5 +1,7 @@
 .users_table{
-    width: auto;
+display: inline;
+    width: inherit;
     margin-top: 4rem;
-    overflow: hidden;
+  
+    
 }

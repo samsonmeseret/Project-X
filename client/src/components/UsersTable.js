@@ -222,41 +222,43 @@ function UsersTable() {
               </Alert>
             )}
           </div>
-          <MaterialTable
-            title="System Users"
-            columns={columns}
-            data={data}
-            icons={tableIcons}
-            options={{
-              headerStyle: {
-                // backgroundColor: "#f1f5f8",
-                // borderBottomColor: "blue",
-              },
-              rowStyle: {
-                // backgroundColor: "#f2f5f8",
-              },
+          <div style={{ display: "inline-block" }}>
+            <MaterialTable
+              title="System Users"
+              columns={columns}
+              data={data}
+              icons={tableIcons}
+              options={{
+                headerStyle: {
+                  // backgroundColor: "#f1f5f8",
+                  // borderBottomColor: "blue",
+                },
+                rowStyle: {
+                  // backgroundColor: "#f2f5f8",
+                },
+                draggable: true,
+                exportButton: true,
+                padding: "defaul",
+                maxBodyHeight: "590px",
+                actionsColumnIndex: -1,
+              }}
+              editable={{
+                onRowUpdate: (newData, oldData) =>
+                  new Promise((resolve) => {
+                    handleRowUpdate(newData, oldData, resolve);
+                  }),
+                onRowAdd: (newData) =>
+                  new Promise((resolve) => {
+                    handleRowAdd(newData, resolve);
+                  }),
 
-              exportButton: true,
-              padding: "defaul",
-              maxBodyHeight: "590px",
-              actionsColumnIndex: -1,
-            }}
-            editable={{
-              onRowUpdate: (newData, oldData) =>
-                new Promise((resolve) => {
-                  handleRowUpdate(newData, oldData, resolve);
-                }),
-              onRowAdd: (newData) =>
-                new Promise((resolve) => {
-                  handleRowAdd(newData, resolve);
-                }),
-
-              onRowDelete: (oldData) =>
-                new Promise((resolve) => {
-                  handleRowDelete(oldData, resolve);
-                }),
-            }}
-          />
+                onRowDelete: (oldData) =>
+                  new Promise((resolve) => {
+                    handleRowDelete(oldData, resolve);
+                  }),
+              }}
+            />
+          </div>
         </Grid>
         <Grid item xs={3}></Grid>
       </Grid>

@@ -6,7 +6,7 @@ const AuthContext = React.createContext({
   whami: "",
   expiredIn: "",
   isAuthenticated: false,
-  login: (token) => {},
+  login: (token, expiresIn) => {},
   logout: () => {},
 });
 

@@ -5,7 +5,10 @@
     gap: 2rem;
     overflow: hidden;
     transition: all .4s;
-    /* background-image: linear-gradient(to right, white, #f1f1f1);  */
+
+    position: sticky;
+    top: 1rem;
+
     height: 100vh;
 }
 .sidebar .logo{

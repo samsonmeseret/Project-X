@@ -1,7 +1,7 @@
 .dashboard{
     display: grid;
     grid-template-columns: auto 1fr;
-   
+  
 }
 .upnav{
     display: flex;
@@ -32,4 +32,17 @@
 .signout a:link, .signout a:visited{
     text-decoration: none;
 padding: 0 1rem;
+}
+
+.btn_logout{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    transition: all .3s;
+}
+
+.btn_logout:hover{
+    color: orange;
+   
 }
