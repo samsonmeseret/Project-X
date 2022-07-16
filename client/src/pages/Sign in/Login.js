@@ -41,12 +41,13 @@ const Login = () => {
     try {
       const response = await axios.post(url, { email: user, password: pwd });
       const token = response.data.token;
+      const expiresIn = response.data.expiresIn;
       const res = await axios.get("http://localhost:4000/me", {
         headers: { authorization: `Bearer ${token}` },
       });
       localStorage.setItem("whami", res.data.me.role);
-      console.log(response.data.token);
-      login(token);
+      console.log(response.data);
+      login(token, expiresIn);
     } catch (err) {
       console.log(err.response);
       if (!err.response) {

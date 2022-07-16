@@ -5,7 +5,7 @@ import Login from "../pages/Sign in/Login";
 
 const ProtectedRoute = ({ children }) => {
   const ctx = useContext(AuthContext);
-  if (ctx.isLoggedIn) {
+  if (ctx.isAuthenticated) {
     return children;
   }
   return <Navigate to="/auth/login" />;

@@ -4,7 +4,8 @@ const url = "http://localhost:4000/me";
 const AuthContext = React.createContext({
   token: "",
   whami: "",
-  isLoggedIn: false,
+  expiredIn: "",
+  isAuthenticated: false,
   login: (token) => {},
   logout: () => {},
 });
@@ -22,7 +23,13 @@ export const AuthContextProvider = (props) => {
           console.log(response.data.me.role);
         })
         .catch((err) => {
-          localStorage.removeItem("whami");
+          console.log(err.response.data.message);
+          console.log(err.response.status);
+          if (err.response.status === 401) {
+            localStorage.removeItem("whami");
+            localStorage.removeItem("token");
+            localStorage.removeItem("expiredIn");
+          }
         });
     }
     return () => {
@@ -31,24 +38,36 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   const Whami = localStorage.getItem("whami");
+  const ExpiredIn = localStorage.getItem("expiredIn");
   const [token, setToken] = useState(initialToken);
+  const [expiredIn, setExpiredIn] = useState(ExpiredIn);
 
-  const userIsLoggedIn = !!Whami;
+  const isAuthenticated = () => {
+    if (!token || !expiredIn) {
+      return false;
+    }
+    return new Date().getTime() / 1000 < new Date(expiredIn);
+  };
 
-  const loginHandler = (token) => {
+  const loginHandler = (token, expiredIn) => {
     setToken(token);
+    setExpiredIn(expiredIn);
     localStorage.setItem("token", token);
+    localStorage.setItem("expiredIn", expiredIn);
   };
   const logoutHandler = () => {
     setToken(null);
+    setExpiredIn(null);
     localStorage.removeItem("token");
     localStorage.removeItem("whami");
+    localStorage.removeItem("expiredIn");
   };
 
   const contextValue = {
     whami: Whami,
     token: token,
-    isLoggedIn: userIsLoggedIn,
+    expiredIn: expiredIn,
+    isAuthenticated: isAuthenticated(),
     login: loginHandler,
     logout: logoutHandler,
   };

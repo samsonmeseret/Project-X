@@ -41,6 +41,7 @@ exports.signup = CatchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     token,
+    expiresIn: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
     data: { savedUser },
   });
 });
@@ -73,6 +74,8 @@ exports.login = CatchAsync(async (req, res, next) => {
   res.cookie("jwt", token, cookieOptions);
   res.status(200).json({
     status: "success",
+    expiresIn: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+
     token: token,
   });
 });
@@ -202,6 +205,8 @@ exports.resetPassword = CatchAsync(async (req, res, next) => {
   res.cookie("jwt", token, cookieOptions);
   res.status(200).json({
     status: "success",
+    expiresIn: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+
     token: token,
   });
 });
@@ -232,6 +237,8 @@ exports.updatePassword = CatchAsync(async (req, res, next) => {
   res.cookie("jwt", token, cookieOptions);
   res.status(200).json({
     status: "success",
+    expiresIn: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+
     token: token,
   });
 });
