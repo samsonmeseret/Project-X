@@ -27,7 +27,7 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import axios from "axios";
 import Alert from "@material-ui/lab/Alert";
 import Login from "../pages/Sign in/Login";
-import Denied from "./Denied";
+import Denied from "../pages/permisionDeniedPage/Denied";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -210,58 +210,52 @@ function UsersTable() {
     <Loader />
   ) : (
     <div className="users_table">
-      <Grid container spacing={1}>
-        <Grid item xs={12}></Grid>
-        <Grid item xs={12}>
-          <div>
-            {iserror && (
-              <Alert severity="error">
-                {errorMessages.map((msg, i) => {
-                  return <div key={i}>{msg}</div>;
-                })}
-              </Alert>
-            )}
-          </div>
-          <div style={{ display: "inline-block" }}>
-            <MaterialTable
-              title="System Users"
-              columns={columns}
-              data={data}
-              icons={tableIcons}
-              options={{
-                headerStyle: {
-                  // backgroundColor: "#f1f5f8",
-                  // borderBottomColor: "blue",
-                },
-                rowStyle: {
-                  // backgroundColor: "#f2f5f8",
-                },
-                draggable: true,
-                exportButton: true,
-                padding: "defaul",
-                maxBodyHeight: "590px",
-                actionsColumnIndex: -1,
-              }}
-              editable={{
-                onRowUpdate: (newData, oldData) =>
-                  new Promise((resolve) => {
-                    handleRowUpdate(newData, oldData, resolve);
-                  }),
-                onRowAdd: (newData) =>
-                  new Promise((resolve) => {
-                    handleRowAdd(newData, resolve);
-                  }),
+      <div>
+        {iserror && (
+          <Alert severity="error">
+            {errorMessages.map((msg, i) => {
+              return <div key={i}>{msg}</div>;
+            })}
+          </Alert>
+        )}
+      </div>
+      <div className="table">
+        <MaterialTable
+          title="System Users"
+          columns={columns}
+          data={data}
+          icons={tableIcons}
+          options={{
+            headerStyle: {
+              // backgroundColor: "#f1f5f8",
+              // borderBottomColor: "blue",
+            },
+            rowStyle: {
+              // backgroundColor: "#f2f5f8",
+            },
+            draggable: true,
+            exportButton: true,
+            padding: "defaul",
+            maxBodyHeight: "590px",
+            actionsColumnIndex: -1,
+          }}
+          editable={{
+            onRowUpdate: (newData, oldData) =>
+              new Promise((resolve) => {
+                handleRowUpdate(newData, oldData, resolve);
+              }),
+            onRowAdd: (newData) =>
+              new Promise((resolve) => {
+                handleRowAdd(newData, resolve);
+              }),
 
-                onRowDelete: (oldData) =>
-                  new Promise((resolve) => {
-                    handleRowDelete(oldData, resolve);
-                  }),
-              }}
-            />
-          </div>
-        </Grid>
-        <Grid item xs={3}></Grid>
-      </Grid>
+            onRowDelete: (oldData) =>
+              new Promise((resolve) => {
+                handleRowDelete(oldData, resolve);
+              }),
+          }}
+        />
+      </div>
     </div>
   );
 }

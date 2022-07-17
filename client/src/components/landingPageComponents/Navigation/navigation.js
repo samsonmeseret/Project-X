@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import AuthContext from "../../context/Auth";
+import AuthContext from "../../../context/Auth";
 import { NavLink } from "react-router-dom";
 // import logo from "../../Image/logo.png";
 import "./nav.css";

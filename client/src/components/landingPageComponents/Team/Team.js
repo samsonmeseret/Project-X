@@ -1,7 +1,7 @@
 import React from "react";
 import "./Team.css";
-import DrKume from "../img/DrKume.png";
-import item2 from "../TeamImages/member2.jpg";
+import DrKume from "../../img/DrKume.png";
+import item2 from "../../TeamImages/member2.jpg";
 
 function Team() {
   return (

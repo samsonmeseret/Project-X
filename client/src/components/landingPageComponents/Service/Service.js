@@ -8,14 +8,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 
 import "./Service.css";
-import GeneralEye from "../img/GeneralEye.png";
-import Glacuma from "../img/Glacuma.png";
-import Diabetic from "../img/Diabetic.png";
-import Emergency from "../img/Emergency.png";
-import Pediatric from "../img/Pediatric.png";
-import Refraction from "../img/Refraction.png";
-import Eyeglass from "../img/Eyeglass.png";
-import Cataract from "../img/Cataract.png";
+import GeneralEye from "../../img/GeneralEye.png";
+import Glacuma from "../../img/Glacuma.png";
+import Diabetic from "../../img/Diabetic.png";
+import Emergency from "../../img/Emergency.png";
+import Pediatric from "../../img/Pediatric.png";
+import Refraction from "../../img/Refraction.png";
+import Eyeglass from "../../img/Eyeglass.png";
+import Cataract from "../../img/Cataract.png";
 import { display } from "@mui/system";
 
 const theme = createTheme({

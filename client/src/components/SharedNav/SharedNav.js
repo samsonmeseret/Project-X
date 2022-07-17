@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Navigation from "../Nave/navigation";
+import Navigation from "../landingPageComponents/Navigation/navigation";
 
 const SharedNav = () => {
   return (

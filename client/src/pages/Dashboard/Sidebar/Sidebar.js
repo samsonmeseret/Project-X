@@ -7,8 +7,9 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import AuthContext from "../../context/Auth";
+import AuthContext from "../../../context/Auth";
 import "./sidebar.css";
+
 const SideBar = ({ open }) => {
   const ctx = useContext(AuthContext);
   return (

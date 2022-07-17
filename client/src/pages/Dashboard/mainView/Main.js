@@ -2,9 +2,9 @@ import React, { useState, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import AuthContext from "../../context/Auth";
-import SideBar from "./Sidebar";
-import style from "./main.module.css";
+import AuthContext from "../../../context/Auth";
+import SideBar from "../Sidebar/Sidebar";
+import style from "../mainView/main.module.css";
 
 const Main = () => {
   const [open, setOpen] = useState(true);

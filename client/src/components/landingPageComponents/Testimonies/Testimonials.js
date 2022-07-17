@@ -2,9 +2,9 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import "./Testimonials.css";
-import Member1 from "../img/member1.jpg";
-import Member2 from "../img/member2.jpg";
-import Member3 from "../img/member3.jpg";
+import Member1 from "../../img/member1.jpg";
+import Member2 from "../../img/member2.jpg";
+import Member3 from "../../img/member3.jpg";
 
 const Testimonials = () => {
   return (

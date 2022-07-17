@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import AuthContext from "./Auth";
-import Denied from "../components/Denied";
+import Denied from "../pages/permisionDeniedPage/Denied";
 
 const RoleProtectection = ({ children, roles }) => {
   const rolesArray = [...roles];

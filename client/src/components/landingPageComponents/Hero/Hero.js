@@ -1,6 +1,6 @@
 import React from "react";
 import "./hero.css";
-import Kume from "../svg/Kume";
+import Kume from "../../svg/Kume";
 import { SvgBlob } from "react-svg-blob";
 
 const Hero = () => {
