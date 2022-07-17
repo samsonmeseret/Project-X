@@ -40,7 +40,8 @@ width: 100%;
   padding: 2rem;
   font-size: 1.8rem;
   font-weight: 400;
-  color: #5c5c5c;
+  /* color: #5c5c5c; */
+  color: #6E85B7;
   font-family: "Open Sans", sans-serif;
 }
 .doctor-cont {
@@ -69,7 +70,8 @@ width: 100%;
   transition: all .3s;
 }
 .EachDoctors:hover{
-  background-color: #7d54f0;
+  /* background-color: #7d54f0; */
+  background-color: #6E85B7;
   color: white;
 }
 .EachDoctors:hover .arrow-bottom
@@ -88,6 +90,7 @@ width: 100%;
   word-spacing: .2rem;
   text-align: center;
   color: #5c5c5c;
+ 
   font-weight: 400;
   
 }
@@ -102,7 +105,8 @@ width: 100%;
   position: center;
   width: 30px;
   height: 30px;
-  background: #764af1;
+  /* background: #764af1; */
+  background-color: #6E85B7;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);

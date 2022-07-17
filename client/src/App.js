@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import UserTable from "./components/UsersTable";
+import UserTable from "./components/dashboardComponents/UsersTable/UsersTable";
 import Login from "./pages/Sign in/Login";
 import AuthContext from "./context/Auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";

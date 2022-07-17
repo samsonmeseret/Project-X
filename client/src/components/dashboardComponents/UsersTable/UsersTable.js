@@ -3,10 +3,10 @@ import { Navigate } from "react-router-dom";
 import { forwardRef } from "react";
 import Avatar from "react-avatar";
 import Grid from "@material-ui/core/Grid";
-import AuthContext from "../context/Auth";
-import { useApi } from "../api/axiosWithHeader";
-import Loader from "./Loader";
-import "./userstable.css";
+import AuthContext from "../../../context/Auth";
+import { useApi } from "../../../api/axiosWithHeader";
+import Loader from "./../../Loader";
+import "../UsersTable/userstable.css";
 
 import MaterialTable from "material-table";
 import AddBox from "@material-ui/icons/AddBox";
@@ -26,8 +26,8 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import axios from "axios";
 import Alert from "@material-ui/lab/Alert";
-import Login from "../pages/Sign in/Login";
-import Denied from "../pages/permisionDeniedPage/Denied";
+import Login from "../../../pages/Sign in/Login";
+import Denied from "../../../pages/permisionDeniedPage/Denied";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
