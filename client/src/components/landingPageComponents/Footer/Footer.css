@@ -1,9 +1,96 @@
-.footerAkafi {
-  background-color: #aaacaf !important ;
+.footer-cont {
+  width: 100%;
+  background-color:#495C83;
+  color: white;
+ display: flex;
+ flex-direction: column;
+
+ padding: 2rem;
 }
-.Main-div {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(50rem, 1fr)) !important;
+footer{
+display: grid;
+
+grid-template-columns: 1fr 1fr;
+align-items: center;
+}
+.footer-social{
+  justify-self: center;
+  display: flex;
+
+  flex-direction: column;
   gap: 1rem;
-  background-color: #AAACAF;
+}
+.social-icons{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.social-icons a:link,
+.social-icons a:visited{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+padding: .2rem;
+  transition: all .4s;
+}
+.social-icons .fb:hover{
+  background-color: #073faf;
+  fill:white;
+  /* background-color: rgb(255, 255, 255); */
+  padding: .2rem;
+  border-radius: .3rem;
+  /* stroke: white; */
+}
+.social-icons .tl:hover{
+  color: #06a2f0;
+  padding: .2rem;
+    border-radius: .3rem;
+  background-color: black;
+}
+.social-icons .linked:hover{
+  background-color: #0b72f0;
+  /* background-color: white; */
+  padding: 0.2rem;
+  border-radius: .3rem;
+}
+.footer-links{
+  justify-self: center;
+  display: flex;
+  gap: 2rem;
+}
+.footer-links ul{
+
+}
+.footer-links ul li{
+  padding: .3rem;
+list-style: none;
+}
+.footer-links a:link,
+.footer-links a:visited{
+color: lightgrey;
+text-decoration: none;
+padding: .3rem;
+transition: all .4s;
+}
+.footer-links a:hover,
+.footer-links a:active{
+  color: white;
+}
+.copyright{
+  align-self: center;
+}
+
+@media screen and (max-width:540px ) {
+  footer {
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-template-rows: 1fr 1fr;
+     gap: 2rem;
+    }
+    .footer-links{
+      grid-column: 1/-1;
+      grid-row: 1/2;
+    }
+ 
 }
