@@ -6,6 +6,8 @@ import Testimonials from "../../components/landingPageComponents/Testimonies/Tes
 import Service from "../../components/landingPageComponents/Service/Service";
 import About from "../../components/landingPageComponents/About/About";
 import Quality from "../../components/landingPageComponents/QualityText/Qualities";
+import Contacts from "../../components/landingPageComponents/Contacts/Contacts";
+// import PulseLoader from "../../components/PulseLoader/PulseLoader";
 import "./home.css";
 const Home = () => {
   return (

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
+import { BsTwitter } from "react-icons/bs";
 import "./Footer.css";
 
 export default function Footer() {
@@ -26,6 +27,9 @@ export default function Footer() {
                 <Link className="linked" to={"#"}>
                   <FaLinkedinIn />
                 </Link>
+                <a href="#" className="twitter">
+                  <BsTwitter />
+                </a>
               </div>
             </div>
             <div>

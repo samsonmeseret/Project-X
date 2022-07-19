@@ -54,6 +54,9 @@ padding: .2rem;
   padding: 0.2rem;
   border-radius: .3rem;
 }
+.social-icons .twitter:hover{
+color: #06a2f0;
+}
 .footer-links{
   justify-self: center;
   display: flex;
