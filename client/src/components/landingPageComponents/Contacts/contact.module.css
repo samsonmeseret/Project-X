@@ -122,6 +122,15 @@ width: 100%;
 height: 100%;
 }
 iframe{
+    border: none;
+    border-radius: 2rem;
     width: 100%;
     height: 100%;
 }
+@media screen and (max-width: 767px){
+.contacts{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+} 
+    

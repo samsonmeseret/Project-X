@@ -13,10 +13,12 @@
     padding: 2rem;
     font-size: 3rem;
     text-align: center;
+    color: #495C83 !important;
 }
 .about h1 span{
     /* color: blueviolet;
     font-weight: 500; */
+   
 }
 .about p{
 font-weight: 300;
